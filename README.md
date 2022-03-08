@@ -4,7 +4,8 @@
 <ul>
     <li> Héctor Miranda García A01658845</li>
     <li> Misael Chavez Ramos A01659759</li>
-    <li> German Wong del Toro A01655080
+    <li> German Wong del Toro A01655080</li>
+    <li> Victor Hugo Portilla Ortiz A01659198</li>
 </ul>
 
 ## Explanation
