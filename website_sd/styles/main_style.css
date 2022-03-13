@@ -1,6 +1,7 @@
 @import "helvetica_font/stylesheet.css";                        /* Importing font stylesheet*/
 
 *{
-    font-family: "Helvetica Now Display";
+    font-family: "Helvetica Now Display", sans-serif !important;
     font-size: medium;
+    
 }
