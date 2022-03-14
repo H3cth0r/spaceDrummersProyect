@@ -254,6 +254,8 @@ p{
 .how_to_keys img{
     width: 3.5rem;
     height: auto;
+    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 .how_to_spacer_two{
