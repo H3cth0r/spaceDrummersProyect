@@ -66,11 +66,11 @@
     .how_to_spacer_two{
         display: none;
     }
-    #how_to_title{
+    .how_to_title_flex p{
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 30vw !important;
         background-color: transparent;
-        margin-right: 2rem;
+        margin-right: 0px;
     }
     .how_to_title_flex{
         display: flex;
@@ -247,14 +247,23 @@ p{
     max-width: 40vw;
     max-height: 100vh;
 }
+.how_to_keys{
+    display: flex;
+    justify-content: center;
+}
+.how_to_keys img{
+    width: 3.5rem;
+    height: auto;
+}
+
 .how_to_spacer_two{
     width: 100vw;
-    height: 13rem;
+    height: 9rem;
     background-color: transparent;
 }
-#how_to_title{
+.how_to_title_flex p{
     font-weight: bold;
-    font-size: 8rem;
+    font-size: 10vw!important;
     background-color: transparent;
     margin-right: 2rem;
 }
