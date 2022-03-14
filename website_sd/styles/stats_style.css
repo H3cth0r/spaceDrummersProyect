@@ -41,6 +41,12 @@
    } 
 }
 
+@media screen and (max-width: 1212px){
+    .played_hours_div{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 
 
 p{
@@ -142,7 +148,10 @@ p{
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
     align-items: flex-end;
+    justify-content: flex-end;
 }
 .played_hours_div img{
   height: 30rem;
@@ -158,6 +167,7 @@ p{
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: row;
     align-items: center;
 }
 .ages_div img{
@@ -174,6 +184,7 @@ p{
 /* best_global_players_div */
 .best_global_players_div{
     display: flex;
+    flex-direction: row;
     align-items: flex-end;
     width: 100vw;
     height: 100vh;
