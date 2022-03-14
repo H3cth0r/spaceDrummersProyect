@@ -148,6 +148,9 @@ p{
   height: 30rem;
   width: auto;
 }
+.played_hours_div p{
+    align-self: center;
+}
 
 
 /* ages div */
@@ -162,17 +165,42 @@ p{
     width: auto;
     margin-left: 7rem;
 }
+.ages_div p{
+    margin-left: 15rem;
+
+}
 
 
 /* best_global_players_div */
 .best_global_players_div{
+    display: flex;
+    align-items: flex-end;
     width: 100vw;
     height: 100vh;
 }
-
+.best_global_players_div img{
+    height: 30rem;
+    width: auto;
+}
+.best_global_players_div p{
+    align-self: center;
+}
 
 /* Best Scores by leve div */
 .best_scores_by_level_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
+}
+.best_scores_by_level_div img{
+    height: 15rem;
+    width: 55rem;
+}
+.best_scores_by_level_div p{
+    align-self: flex-start;
+    margin-bottom: 5rem;
+    margin-left: 5rem;
 }
