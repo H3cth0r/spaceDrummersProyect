@@ -9,10 +9,40 @@
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 751px) {
    .navbar p{
        font-size: 150%;
    } 
+
+
+    .context_objective_div{
+        /* display: flex; */
+        width: 100vw;
+        height: auto;
+    }
+    #context_objective_header{
+        font-weight: bold;
+        font-size: 4rem;
+    }
+    .oc_spacer{
+        display: none;
+    }
+    .co_container{
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .co_container p{
+        text-align: justify;
+        min-width: 80vw;
+    }
+    .co_container img{
+        width: 14rem;
+        height: auto;
+        margin-top: 2rem;
+    }
 
 }
 
@@ -41,10 +71,12 @@ p{
     width: 3rem;
     height: auto;
     margin: 1rem;
+    background-color: transparent;
 }
 .navbar a img{
     width: 1.5rem;
     height: auto;
+    background-color: transparent;
 }
 
 #navbar_id{
@@ -117,3 +149,48 @@ p{
 
 
 /* Context & Objective div */
+.context_objective_div{
+    /* display: flex; */
+    width: 100vw;
+    height: 100vh;
+}
+#context_objective_header{
+    font-weight: bold;
+    font-size: 5rem;
+}
+.oc_spacer{
+    width: 100vw;
+    height: 7rem;
+}
+.co_container{
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.co_container p{
+    text-align: justify;
+    max-width: 30vw;
+    max-height: 100vh;
+}
+.co_container img{
+    width: 14rem;
+    height: auto;
+}
+
+
+/* How to div */
+.how_to_div{
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+}
+
+
+
+/* Team div */
+.team_div{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
