@@ -81,7 +81,13 @@
 
 
 
+    .user_cards_div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
 
+        height: 80vh;
+    }
 
 
 
@@ -200,6 +206,7 @@ p{
 #context_objective_header{
     font-weight: bold;
     font-size: 5rem;
+    color: #00A83B;
 }
 .oc_spacer{
     width: 100vw;
@@ -268,6 +275,7 @@ p{
     font-size: 10vw!important;
     background-color: transparent;
     margin-right: 2rem;
+    color: #274A9F;
 }
 .how_to_title_flex{
     display: flex;
@@ -281,4 +289,61 @@ p{
     width: 100vw;
     height: 100vh;
     background-color: white;
+}
+.team_header_div{
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+    height: 20vh;
+    align-items: flex-end;
+}
+#team_title{
+    font-weight: bold;
+    font-size: 5rem;
+    color: #D3450D;
+    background-color: transparent;
+}
+
+.user_cards_div{
+    height: 80vh;
+    display: flex;
+    flex-direction: row wrap;
+    background-color: transparent;
+    justify-content: space-around;
+    align-items: center;
+}
+.user_cards_div div{
+    min-width: 20%;
+    height: 0;
+    padding-bottom: 20%;
+    /* background-color: #D3450D; */
+}
+
+.user_cards_div div{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.victor_card{
+    /* background-image: url('../resources/default_team_mate.jpg'); */
+    background-color: #E0E0E0;
+}
+.hector_card{
+    background-image: url('../resources/thats_me.jpeg');
+}
+.user_cards_div div p{
+    font-weight: 500;
+    font-size: 4vw;
+    text-align: end;
+    background-color: transparent;
+}
+.misael_card{
+    /* background-image: url('../resources/default_team_mate.jpg'); */
+    background-color: #E0E0E0;
+}
+.german_card{
+    /* background-image: url('../resources/default_team_mate.jpg'); */
+    background-color: #E0E0E0;
 }
