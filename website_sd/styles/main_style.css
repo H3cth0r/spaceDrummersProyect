@@ -9,6 +9,35 @@
 }
 
 
+
+/* Scrollbar start */
+/* width */
+::-webkit-scrollbar {
+  width: 0.2vw;
+  height: 0.1vh;
+}
+
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white; 
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #444444;
+}
+
+::selection {
+  color: white;
+  background: #444444;
+}
+
+
+
+
 @media screen and (max-width: 751px) {
    .navbar p{
        font-size: 150%;

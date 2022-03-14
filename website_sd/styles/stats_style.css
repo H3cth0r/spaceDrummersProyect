@@ -1,0 +1,178 @@
+
+@import "helvetica_font/stylesheet.css";                        /* Importing font stylesheet*/
+
+*{
+    font-family: "Helvetica Now Display", sans-serif !important;
+    font-size: medium;
+    padding: 0%;
+    margin: 0%;
+}
+
+
+/* Scrollbar start */
+/* width */
+::-webkit-scrollbar {
+  width: 0.2vw;
+  height: 0.1vh;
+}
+
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0); 
+}
+
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #444444;
+}
+
+::selection {
+  color: white;
+  background: #444444;
+}
+
+@media screen and (max-width: 751px) {
+   .navbar p{
+       font-size: 150%;
+   } 
+}
+
+
+
+p{
+    color: #444444;
+}
+
+/* NavBar */
+.navbar{
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    top: 0%;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar p{
+    background: transparent;
+    font-weight: 500;
+    margin: 1.5rem;
+}
+.navbar a{
+    width: 3rem;
+    height: auto;
+    margin: 1rem;
+    background-color: transparent;
+}
+.navbar a img{
+    width: 1.5rem;
+    height: auto;
+    background-color: transparent;
+}
+
+#navbar_id{
+    background-color: transparent;
+}
+
+
+/* Clicked sandwich menu */
+.close_clicked_sandwich_menu{
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    left: 0%;
+    width: 19vw;
+    height: 100vh;
+    background-color: transparent;
+}
+.clicked_sandwich_menu{
+    display: none;
+    /* display: flex; */
+    overflow: hidden;
+    position: fixed;
+    right: 0%;
+    width: 80vw;
+    height: 100vh;
+    background-color: #D3450D;
+    flex-direction: column;
+}
+.clicked_sandwich_menu nav{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul li{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul li a{
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 5rem;
+}
+
+
+
+/* Fixed Stats title */
+.fixed_inferior_div{
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 14vh;
+    bottom: 0%;
+    align-items: center;
+    justify-content: end;
+}
+.fixed_inferior_div p{
+    font-weight: bold;
+    font-size: 5rem;
+    margin-right: 1rem;
+
+}
+
+
+/* Played hours div */
+.played_hours_div{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+}
+.played_hours_div img{
+  height: 30rem;
+  width: auto;
+}
+
+
+/* ages div */
+.ages_div{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.ages_div img{
+    height: 20rem;
+    width: auto;
+    margin-left: 7rem;
+}
+
+
+/* best_global_players_div */
+.best_global_players_div{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/* Best Scores by leve div */
+.best_scores_by_level_div{
+    width: 100vw;
+    height: 100vh;
+}
