@@ -42,7 +42,23 @@
 }
 
 @media screen and (max-width: 1212px){
+    /* Played hour div responsive */
     .played_hours_div{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .played_hours_div p{
+        margin-left: 2rem;
+    }
+
+    /* Ages div responsive */
+    .ages_div{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* best global players div */
+    .best_global_players_div{
         flex-direction: column;
         align-items: flex-start;
     }
@@ -154,7 +170,7 @@ p{
     justify-content: flex-end;
 }
 .played_hours_div img{
-  height: 30rem;
+  height: 30vw;
   width: auto;
 }
 .played_hours_div p{
@@ -167,11 +183,14 @@ p{
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
     align-items: center;
+    justify-content: flex-end;
 }
 .ages_div img{
-    height: 20rem;
+    /* height: 20rem; */
+    height: 20vw;
     width: auto;
     margin-left: 7rem;
 }
@@ -184,13 +203,16 @@ p{
 /* best_global_players_div */
 .best_global_players_div{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
     align-items: flex-end;
+    justify-content: flex-end;
     width: 100vw;
     height: 100vh;
 }
 .best_global_players_div img{
-    height: 30rem;
+    /* height: 30rem; */
+    height: 30vw;
     width: auto;
 }
 .best_global_players_div p{
@@ -207,8 +229,10 @@ p{
     height: 100vh;
 }
 .best_scores_by_level_div img{
-    height: 15rem;
-    width: 55rem;
+    /* height: 15rem;
+    width: 55rem; */
+    height: auto;
+    width:60vw;
 }
 .best_scores_by_level_div p{
     align-self: flex-start;
