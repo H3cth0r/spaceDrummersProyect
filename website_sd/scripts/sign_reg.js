@@ -42,7 +42,6 @@ function on_click_sign_up(){
 }
 
 
-
 function on_click_log_in(){
     // If it is already up exit function
     if(log_in_up == true) return;
