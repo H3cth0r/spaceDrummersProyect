@@ -39,6 +39,14 @@
    .navbar p{
        font-size: 150%;
    } 
+
+   .main_log_reg_div{
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+   }
+
+
 }
 
 
@@ -116,5 +124,122 @@ p{
     font-size: 5rem;
 }
 
+/* ==================================================  */
 
 
+
+
+/* Main log red div */
+.main_log_reg_div{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    align-items: center;
+    flex-direction: row; 
+}
+
+
+/* Sign up div */
+.sign_up_div{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+.sign_up_div a{
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+} 
+.sign_up_div_two div{
+    background-color: transparent;
+}
+.sign_up_div_two div div{
+    background-color: transparent;
+}
+.sign_up_div_two div div label{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two div div select{
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two div div input{
+    border: transparent;
+    background-color: white;
+}
+.ddl{
+    margin-right: 1rem;
+}
+.ddr{
+    margin-left: 1rem;
+}
+.sign_up_div_two div div{
+    display: flex;
+    flex-direction: column;
+} 
+
+#singup_button{
+    background-color: white;
+    color: white;
+}
+
+
+/* sign in div */
+.log_in_div{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;   
+}
+
+.log_in_div a{
+    color: white;
+    background-color: transparent;
+}
+.log_in_div_two{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+} 
+.log_in_div_two div{
+    background-color: transparent;
+}
+.log_in_div_two div div{
+    background-color: transparent;
+}
+.log_in_div_two div div label{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: transparent;
+}
+.log_in_div_two div div input{
+    border: transparent;
+    background-color: white;
+}
+
+.log_in_div_two div div{
+    display: flex;
+    flex-direction: column;
+}
+
+.button{
+    margin-top: 2rem;
+    width: 6rem;
+    height: 2rem;
+    background-color: #1D9BF0;
+    color: white;
+    border: transparent;
+}
