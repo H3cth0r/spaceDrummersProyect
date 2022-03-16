@@ -19,19 +19,25 @@ This pro
 
 
 - **Login**
-  * Attribute
-      - userName()
-      - hashPwd() 
-  * Method
-      - MD5_hash ()
+  * Attributes
+      - userName:TMP_input_field:
+      - hashPwd:TMP_input_field 
+  * Methods
+      - MD5_hash(stsring):string
+      - Upload(string):IEnumerator
+      - LoginButton(Clicked):void
+
+
+- **G**
+  * Attributes
+      - confirmation(bool)
+      - lastLevel(int)
+      - userScores(int)
+  * Methods
+      - Upload()
 
 - **Other**
-  * Attribute
+  * Attributes
       - ()
-  * Method
-      - ()
-- **Other**
-  * Attribute
-      - ()
-  * Method
+  * Methods
       - ()
