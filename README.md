@@ -28,17 +28,14 @@ This pro
       - Upload(string):IEnumerator
       - LoginButton(Clicked):void
 
-
-
 - **Session**
   * Attributes
       - startTime:string
       - endTime:string
-      - currentLevel:int <========
+      - userInfo:User
   * Methods
       - gets()
       - sets()
-
 - **Attempt(per level gamed)**
   * Attributes
       - levelId:Int
@@ -49,6 +46,7 @@ This pro
       - failedShotos:Int
       - totalShots:Int
   * Methods
+      - sendDataToServer()
       - gets()
       - sets()
 - **User**
@@ -60,6 +58,25 @@ This pro
   * Methods
       - gets()
       - sets()
+
+- **Settings**
+   * Attributes
+       - volumeLevel:int
+       - controlConfig:Control
+   * Methods
+       - changeVolume(int):bool
+       - resetControls():bool
+       - changeControlConfig()bool
+- **Control**
+   * Attributes
+       - controlOne:char
+       - controlTwo:char
+       - controlThree:char
+       - controlFour:char
+   * Methods
+       - defaultControls():bool
+       - gets():char
+       - sets(char):bool
 ### Send and used on server
 
 - **InitialSession(response from server)**
@@ -69,4 +86,5 @@ This pro
       - userId:int
       - userName:string
   * Methods
-     eq
+      - Gets()
+      - Sets()
