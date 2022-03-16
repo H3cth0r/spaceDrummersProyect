@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles/log_reg_style.css">
-
+        <!-- jquery import  -->
         <!-- importing anime.js script -->
         <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
+
+        <script src="scripts/sign_reg.js"></script>
 
         <!-- local funtions script -->
 
@@ -43,7 +47,7 @@
        <div class="main_log_reg_div">
             <!-- sign_up_div -->
             <div class="sign_up_div">
-                <a href="#" id="to_animate_button_one">Sign Up</a>
+                <a href="#" id="sign_up_a" onclick="on_click_sign_up()">Sign Up</a>
                 <div class="sign_up_div_two">
                     <div class="ddl">
                         <div><label for="sign_up_name">Name</label><input type="text" id="sign_up_name"></div>
@@ -313,25 +317,24 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" class="button">Sign Up</button>
+                <button type="button" class="button button_one">Sign Up</button>
             </div>
 
             <!-- login_div -->
             <div class="log_in_div">
-                <a href="#" >Login</a>
+                <a href="#" id="login_a" onclick="on_click_log_in()">Login</a>
                 <div class="log_in_div_two">
                     <div class="center_log_in_div">
                         <div><label for="log_in_username">Username / Email</label><input type="text"></div>
                         <div><label for="log_in_password">Password</label><input type="password"></div>
                     </div>
                 </div>
-                <button type="button" class="button">Login</button>
+                <button type="button" class="button button_two">Login</button>
             </div>
 
        </div>
 
 
-        <script src="scripts/sign_reg.js"></script>
 
 
         

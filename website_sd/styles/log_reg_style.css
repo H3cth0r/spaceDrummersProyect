@@ -9,6 +9,16 @@
     margin: 0%;
 }
 
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
 /* Scrollbar start */
 /* width */
 ::-webkit-scrollbar {
@@ -43,10 +53,12 @@
    .main_log_reg_div{
        display: flex;
        flex-direction: column;
-       align-items: flex-start;
+       align-items: center;
    }
-
-
+   .main_log_reg_div{
+       height: 100vh;
+       width: 40vw;
+   }
 }
 
 
@@ -152,7 +164,10 @@ p{
     background-color: transparent;
 }
 .sign_up_div_two{
-    display: flex;
+    /* .,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,., */
+    /* display: flex; */
+    display: none;
+    animation: fadeInAnimation ease 3s;
     flex-direction: row;
     background-color: transparent;
 } 
@@ -209,7 +224,9 @@ p{
     background-color: transparent;
 }
 .log_in_div_two{
-    display: flex;
+    /* display: flex; */
+    display: none;
+    animation: fadeInAnimation ease 3s;
     flex-direction: row;
     background-color: transparent;
 } 
@@ -235,6 +252,11 @@ p{
     flex-direction: column;
 }
 
+
+
+
+
+/* =================>BUTTON<================= */
 .button{
     margin-top: 2rem;
     width: 6rem;
@@ -242,4 +264,11 @@ p{
     background-color: #1D9BF0;
     color: white;
     border: transparent;
+}
+.button_one{
+    display: none;
+    animation: fadeInAnimation ease 3s;
+}
+.button_two{
+    display: none;
 }

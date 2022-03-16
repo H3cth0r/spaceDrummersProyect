@@ -1,5 +1,17 @@
 @import "helvetica_font/stylesheet.css";                        /* Importing font stylesheet*/
 
+
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+
 *{
     font-family: "Helvetica Now Display", sans-serif !important;
     font-size: medium;
