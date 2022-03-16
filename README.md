@@ -18,19 +18,19 @@ This pro
 ## Classes
 
 
-- Login
+- **Login**
   * Attribute
       - userName()
       - hashPwd() 
   * Method
       - MD5_hash ()
 
-- Other
+- **Other**
   * Attribute
       - ()
   * Method
       - ()
-- Other
+- **Other**
   * Attribute
       - ()
   * Method
