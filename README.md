@@ -17,6 +17,7 @@ This pro
 
 ## Classes
 
+### Send and Used on Unity
 
 - **Login**
   * Attributes
@@ -28,16 +29,44 @@ This pro
       - LoginButton(Clicked):void
 
 
-- **G**
-  * Attributes
-      - confirmation(bool)
-      - lastLevel(int)
-      - userScores(int)
-  * Methods
-      - Upload()
 
-- **Other**
+- **Session**
   * Attributes
-      - ()
+      - startTime:string
+      - endTime:string
+      - currentLevel:int <========
   * Methods
-      - ()
+      - gets()
+      - sets()
+
+- **Attempt(per level gamed)**
+  * Attributes
+      - levelId:Int
+      - Score:Int
+      - Succed:Bool
+      - timeWhenScored:String
+      - KOS:Int
+      - failedShotos:Int
+      - totalShots:Int
+  * Methods
+      - gets()
+      - sets()
+- **User**
+  * Attributes
+      - userId:int
+      - userName:string
+      - userId:int
+      - currentSession:Session
+  * Methods
+      - gets()
+      - sets()
+### Send and used on server
+
+- **InitialSession(response from server)**
+  * Attributes
+      - currentLevel:int 
+      - accessGranted:bool
+      - userId:int
+      - userName:string
+  * Methods
+     eq
