@@ -1,0 +1,280 @@
+@import "helvetica_font/stylesheet.css";                        /* Importing font stylesheet*/
+
+
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+
+*{
+    font-family: "Helvetica Now Display", sans-serif !important;
+    font-size: medium;
+    background-color: white;   
+    padding: 0%;
+    margin: 0%;
+}
+
+
+
+/* Scrollbar start */
+/* width */
+::-webkit-scrollbar {
+  width: 0.2vw;
+  height: 0.1vh;
+}
+
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0); 
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #444444;
+}
+
+::selection {
+  color: white;
+  background: #444444;
+}
+
+
+@media screen and (max-width: 751px) {
+    .main_div{
+        flex-direction: column;
+    }
+
+    .left_menu_div{
+        width: 100%;
+        height: 100vh;
+    }
+    .account_information_div{
+        width: 100%;
+        height: 100vh;
+    }
+
+    #creation_date_title{
+        margin-top: 2rem;
+    }
+
+    #table_img{
+        min-width: 100vw;
+        height: auto;
+    }
+
+}
+
+
+.main_div{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+/* left menu */
+.left_menu_div{
+    min-width: 25%;
+    min-height: 100vh;
+    background-color: #E0E0E0;
+}
+
+.left_menu_img{
+    width: 100%;
+    height: 40%;
+    background-image: url('../resources/elon_musk.jpg');
+    background-size: cover;
+}
+.left_menu_div ul{
+    list-style-type: none;
+    margin-left: 1rem;
+    background-color: transparent;
+}
+.left_menu_div ul li{
+    background-color: transparent;
+}
+.left_menu_div ul li a{
+    font-size: 4rem;
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+/* account information */
+.account_information_div{
+    display: none;
+    width: 75%;
+    height: 100vh;
+    background-color: white;
+}
+
+
+.account_information_title p{
+    margin-left: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+
+/* Sign up div */
+.sign_up_div{
+    /* width: 50vw; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+.sign_up_div div{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+}
+.sign_up_div div div{
+    display: flex;
+    flex-direction: column;
+}
+.sign_up_div a{
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two{
+    /* .,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,., */
+    /* display: flex; */
+    display: block;
+    flex-direction: row;
+    background-color: transparent;
+} 
+.sign_up_div_two div{
+    background-color: transparent;
+}
+.sign_up_div_two div div{
+    background-color: transparent;
+}
+.sign_up_div_two div div label{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+}
+.sign_up_div_two div div select{
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    background-color: transparent;
+}
+.sign_up_div_two div div input{
+    border: transparent;
+    background-color: #E0E0E0;
+}
+.ddl{
+    margin-right: 1rem;
+}
+.ddr{
+    margin-left: 1rem;
+}
+.sign_up_div_two div div{
+    display: flex;
+    flex-direction: column;
+} 
+
+#singup_button{
+    background-color: white;
+    color: white;
+}
+.button{
+    margin-top: 2rem;
+    width: 6rem;
+    height: 2rem;
+    background-color: #1D9BF0;
+    color: white;
+    border: transparent;
+}
+
+/* Creation Date */
+#creation_date_title{
+    margin-left: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+}
+#creation_date_date{
+    margin-left: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #808080;
+}
+
+
+
+/* User Stats */
+.my_stats_div{
+    display: block;
+    width: 75%;
+    height: 100vh;
+    background-color: white;
+}
+
+#my_stats_title{
+    font-size: 3rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    color: black;
+}
+
+#second_stats_title{
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    color: #444444;
+}
+
+/* .my_stats_div p{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    color: #444444;
+} */
+
+.table_div{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+#table_img{
+    margin-top: 2rem;
+    width: 50vw;
+    height: auto;
+}
+
+
+.general_data_div{
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    justify-content: space-around;
+}
+.general_data_div div{
+    margin-top: 3rem;
+}
+
+.general_data_div div p span{
+    font-weight: bold;
+    font-size: 2rem;
+    color: #444444;
+}
+.general_data_div div p{
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #444444;
+}
