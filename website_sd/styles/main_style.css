@@ -22,6 +22,20 @@
 
 
 
+
+
+/* Snap Scroll config */
+html{
+    scroll-snap-type: y mandatory;
+}
+
+.general_site_div{
+    scroll-snap-align: start;
+    opacity: 0;
+}
+
+
+
 /* Scrollbar start */
 /* width */
 ::-webkit-scrollbar {
@@ -219,6 +233,7 @@ p{
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 1;
 }
 .main_title_div a{
     color: white;
