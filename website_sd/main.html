@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <!-- Main stylesheet -->
         <link rel="stylesheet" href="styles/main_style.css">
+        <!-- Importing anims js -->
+        <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
+        <!-- importing my navbar animation -->
+        <script src="scripts/navbar_animation.js"></script>
         <title>SpaceDrummer</title>
     </head>
     <body>
@@ -11,7 +17,7 @@
        <div class="navbar" id="navbar_id">
            
             <p>SpaceDrummers</p>
-            <a href=""><img src="resources/white_sandwich.png" alt=""></a> 
+            <a  onclick="nav_bar_slide_left()"><img src="resources/white_sandwich.png" alt=""></a> 
 
        </div>
 
@@ -28,7 +34,7 @@
                 </ul>
             </nav>
        </div>
-       <div class="close_clicked_sandwich_menu"></div>
+       <div class="close_clicked_sandwich_menu" onclick="nav_bar_slide_right()"></div>
 
         <!-- Main title  -->
        <div class="main_title_div" id="">
