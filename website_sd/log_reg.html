@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <!-- importing jquery -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- importing curren stylesheet -->
         <link rel="stylesheet" href="styles/log_reg_style.css">
-        <!-- jquery import  -->
         <!-- importing anime.js script -->
         <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
-
+        <!-- importing my navbar animation -->
+        <script src="scripts/navbar_animation.js"></script>
+        <!-- importing function animations for log and reg buttons -->
         <script src="scripts/sign_reg.js"></script>
 
         <!-- local funtions script -->
 
         <title>get_in</title>
     </head>
+
     <body>
         <!-- Navbar -->
        <div class="navbar" id="navbar_id">
            
             <p>SpaceDrummers</p>
-            <a href=""><img src="resources/white_sandwich.png" alt=""></a> 
+            <a  onclick="nav_bar_slide_left()"><img src="resources/white_sandwich.png" alt=""></a> 
 
        </div>
 
@@ -28,16 +31,16 @@
        <div class="clicked_sandwich_menu">
             <nav>
                 <ul>
-                    <li><a href="">Main</a></li>
-                    <li><a href="">C&O</a></li>
-                    <li><a href="">How to</a></li>
-                    <li><a href="">Our Team</a></li>
-                    <li><a href="">Stats</a></li>
-                    <li><a href="">Play</a></li>
+                    <li><a href="main.html#main_title_id" onclick="nav_bar_slide_right()">Main</a></li>
+                    <li><a href="main.html" onclick="nav_bar_slide_right()">C&O</a></li>
+                    <li><a href="main.html" onclick="nav_bar_slide_right()">How to</a></li>
+                    <li><a href="main.html" onclick="nav_bar_slide_right()">Our Team</a></li>
+                    <li><a href="stats.html">Stats</a></li>
+                    <li><a href="log_reg.html">Play</a></li>
                 </ul>
             </nav>
        </div>
-       <div class="close_clicked_sandwich_menu"></div>
+       <div class="close_clicked_sandwich_menu" onclick="nav_bar_slide_right()"></div>
 
 
 
