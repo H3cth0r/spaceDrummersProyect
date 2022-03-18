@@ -13,6 +13,8 @@
         <script src="scripts/navbar_animation.js"></script>
         <!-- Import on scroll appear function-->
         <script src="scripts/on_scroll_appear.js"></script>
+        <!-- Import highlight menu buttons functions -->
+        <script src="scripts/hl_menu_options.js"></script>
         <title>SpaceDrummer</title>
     </head>
     <body>
@@ -27,11 +29,11 @@
        <!-- clicked Sandwich menu -->
        <div class="clicked_sandwich_menu">
             <nav>
-                <ul>
-                    <li><a href="#main_title_id" onclick="nav_bar_slide_right()">Main</a></li>
-                    <li><a href="#context_objective_id" onclick="nav_bar_slide_right()">C&O</a></li>
-                    <li><a href="#how_to_id" onclick="nav_bar_slide_right()">How to</a></li>
-                    <li><a href="#team_id" onclick="nav_bar_slide_right()">Our Team</a></li>
+                <ul class="navclass">
+                    <li><a href="#main_title_id" class="current" onclick="nav_bar_slide_right()" id="main_menu_button">Main</a></li>
+                    <li><a href="#context_objective_id" onclick="nav_bar_slide_right()" id="co_menu_button">C&O</a></li>
+                    <li><a href="#how_to_id" onclick="nav_bar_slide_right()" id="how_to_menu_button">How to</a></li>
+                    <li><a href="#team_id" onclick="nav_bar_slide_right()" id="our_team_menu_button">Our Team</a></li>
                     <li><a href="stats.html">Stats</a></li>
                     <li><a href="log_reg.html">Play</a></li>
                 </ul>
