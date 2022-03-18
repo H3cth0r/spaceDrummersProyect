@@ -11,7 +11,11 @@
 ## Explanation
 This pro
 
-
+## General Project Structure
+- **website_sd(Space Drummers website)** <br> Here we store every filed required to view and run the official SpaceDrummers project website. On the main folder you will find the html files where the resources, scripts and style are being styled.
+  - **resources**: Here we store images and icons that are applyed on the site.
+  - **scripts**: Here are a series of js scripts necessary for some animatiosn and data processing.
+  - **styles**: On this foldew we store all the css and font files used for the styling of our website.
 
 
 
