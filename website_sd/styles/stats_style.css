@@ -147,7 +147,10 @@ p{
     text-decoration: none;
     font-size: 5rem;
 }
-
+.navbar_link_animation:hover{
+    text-decoration: underline !important;
+    color: #A43407 !important;
+}
 
 
 /* Fixed Stats title */
