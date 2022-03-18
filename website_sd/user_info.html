@@ -14,13 +14,20 @@
         <script src="scripts/change_div.js"></script>
         <!-- Import data processing info -->
         <script src="scripts/save_user_info.js"></script>
+        <!-- import change img function -->
+        <script src="scripts/change_img_function.js"></script>
         <title>Info</title>
     </head>
     <body>
         <div class="main_div">
             <!-- Left div, menu -->
             <div class="left_menu_div">
-                <div class="left_menu_img"></div>
+                <div class="left_menu_img">
+                    <div class="left_menu_change_img_div">
+                        <!-- <a id="change_img_link" href="#">Change Img</a> -->
+                        <input type="file" accept="image/*" id="imgInp">
+                    </div>
+                </div>
                 
                 <ul>
                         <li><a href="#" id="account_button" onclick="change_to_account_div();">Account</a></li>

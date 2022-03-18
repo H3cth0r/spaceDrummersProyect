@@ -10,6 +10,14 @@
         opacity: 1;
      }
 }
+@keyframes fadeInAnimationTwo {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.3;
+     }
+}
 
 
 *{
@@ -110,6 +118,29 @@
 }
 #account_button{
     color: #444444;
+}
+
+.left_menu_change_img_div{
+    /* display: flex; */
+    display: none;
+    justify-content: end;
+    align-items: flex-end;
+    height: 100%;
+    background-color: black;
+    opacity: 0.3;
+    animation: fadeInAnimationTwo ease 2s;
+}
+
+.left_menu_change_img_div input{
+    border: transparent;
+    font-weight: bold;
+}
+
+
+
+div.left_menu_img:hover div.left_menu_change_img_div{
+    display: flex;
+
 }
 
 
