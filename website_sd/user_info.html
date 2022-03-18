@@ -1,6 +1,17 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Importing anims js -->
+        <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
+        <!-- Importing countTo plugin -->
+        <script src="scripts/jquery.countTo.js"></script>
+        <!-- Import stylesheet -->
         <link rel="stylesheet" href="styles/user_info_style.css">
+        <!-- Import change_div function -->
+        <script src="scripts/change_div.js"></script>
         <title>Info</title>
     </head>
     <body>
@@ -10,9 +21,9 @@
                 <div class="left_menu_img"></div>
                 
                 <ul>
-                        <li><a href="">Account</a></li>
-                        <li><a href="">Stats</a></li>
-                        <li><a href="">Log Out</a></li>
+                        <li><a href="#" id="account_button" onclick="change_to_account_div();">Account</a></li>
+                        <li><a href="#" id="stats_button" onclick="change_to_stats_div();">Stats</a></li>
+                        <li><a href="main.html">Log Out</a></li>
                         <li><a href="">Play</a></li>
                 </ul>
             </div> 
@@ -324,14 +335,14 @@
                 <div class="general_data_div">
                     <!-- left data -->
                     <div>
-                        <p><span>25</span> mins average per session.</p>
-                        <p><span>3452</span> acumulatedscore.</p>
+                        <p><span class="number_one_s"></span> mins average per session.</p>
+                        <p><span class="number_two_s"></span> acumulated score.</p>
                     </div>
                     <!-- right data -->
                     <div>
-                        <p><span>23</span> local position.</p>
-                        <p><span>728</span> global position</p>
-                        <p><span>1254</span> minuted played</p>
+                        <p><span class="number_three_s"></span> local position.</p>
+                        <p><span class="number_four_s"></span> global position</p>
+                        <p><span class="number_five_s"></span> minuted played</p>
                     </div>
                 </div>
 

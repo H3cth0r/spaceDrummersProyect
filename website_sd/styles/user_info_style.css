@@ -108,14 +108,18 @@
     text-decoration: none;
     background-color: transparent;
 }
+#account_button{
+    color: #444444;
+}
 
 
 /* account information */
 .account_information_div{
-    display: none;
+    display: block;
     width: 75%;
     height: 100vh;
     background-color: white;
+    animation: fadeInAnimation ease 3s;
 }
 
 
@@ -217,10 +221,11 @@
 
 /* User Stats */
 .my_stats_div{
-    display: block;
+    display: none; /* change this to appear or disappear div*/
     width: 75%;
     height: 100vh;
     background-color: white;
+    animation: fadeInAnimation ease 3s;
 }
 
 #my_stats_title{
