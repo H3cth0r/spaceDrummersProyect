@@ -36,6 +36,7 @@ html{
 
 
 
+
 /* Scrollbar start */
 /* width */
 ::-webkit-scrollbar {
@@ -222,7 +223,10 @@ p{
     text-decoration: none;
     font-size: 5rem;
 }
-
+.navbar_link_animation:hover{
+    text-decoration: underline !important;
+    color: #A43407 !important;
+}
 
 /* Main Title Div */
 .main_title_div{
