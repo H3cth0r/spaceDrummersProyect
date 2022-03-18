@@ -2,15 +2,25 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- importing stats stylesheet -->
         <link rel="stylesheet" href="styles/stats_style.css">
+        <!-- Importing anims js -->
+        <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
+        <!-- importing my navbar animation -->
+        <script src="scripts/navbar_animation.js"></script>
+        <!-- Import on scroll appear function-->
+        <script src="scripts/on_scroll_appear.js"></script>
         <title>Stats</title>
     </head>
     <body>
-         <!-- Navbar -->
+        <!-- Navbar -->
        <div class="navbar" id="navbar_id">
            
             <p>SpaceDrummers</p>
-            <a href=""><img src="resources/black_sandwich.png" alt=""></a> 
+            <a  onclick="nav_bar_slide_left()"><img src="resources/black_sandwich.png" alt=""></a> 
 
        </div>
 
@@ -18,16 +28,13 @@
        <div class="clicked_sandwich_menu">
             <nav>
                 <ul>
-                    <li><a href="">Main</a></li>
-                    <li><a href="">C&O</a></li>
-                    <li><a href="">How to</a></li>
-                    <li><a href="">Our Team</a></li>
-                    <li><a href="">Stats</a></li>
-                    <li><a href="">Play</a></li>
+                    <li><a href="main.html" onclick="nav_bar_slide_right()">Main</a></li>
+                    <li><a href="stats.html">Stats</a></li>
+                    <li><a href="log_reg.html">Play</a></li>
                 </ul>
             </nav>
        </div>
-       <div class="close_clicked_sandwich_menu"></div>
+       <div class="close_clicked_sandwich_menu" onclick="nav_bar_slide_right()"></div>
 
 
        <!-- inferior fixed STAT title div -->
@@ -35,26 +42,27 @@
             <p>STATS</p>
        </div>
 
+
        <!-- Total played hours & countries that play de most-->
-       <div class="played_hours_div">
+       <div class="played_hours_div general_site_div">
            <p>Countries that play the most.</p>
            <img src="resources/countries_graph.png" alt="">
        </div>
        
        <!-- Ages that play the most -->
-       <div class="ages_div">
+       <div class="ages_div general_site_div appear_class">
             <p>Ages that play the most.</p>
             <img src="resources/ages_graph.png" alt="">
        </div>
        
        <!-- Our best global players -->
-       <div class="best_global_players_div">
+       <div class="best_global_players_div general_site_div appear_class">
            <p>Our best global players.</p>
            <img src="resources/podium_graph.png" alt="">
        </div>
        
        <!-- Best scores by level -->
-       <div class="best_scores_by_level_div">
+       <div class="best_scores_by_level_div general_site_div appear_class">
             <p>Best scores by level.</p>
            <img src="resources/table_graph.png" alt="">
        </div>
