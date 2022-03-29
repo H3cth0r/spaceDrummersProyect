@@ -8,7 +8,7 @@
     <li> Victor Hugo Portilla Ortiz A01659198</li>
 </ul>
 
-## Explanation
+## General Project Information
 This pro
 
 ## General Project Structure
@@ -16,7 +16,12 @@ This pro
   - **resources**: Here we store images and icons that are applyed on the site.
   - **scripts**: Here are a series of js scripts necessary for some animatiosn and data processing.
   - **styles**: On this foldew we store all the css and font files used for the styling of our website.
+- **django_server**: Here are located all the correspongin django files and exes for running our server.
+- **vectors**: Here are located the design object located on the website and unity game.
+- **staticAPISs**: This are the examples of APIs that will give functionality to the game.
+- **dataBse**: we saved all files relationated with the database architecture.
 
+level data
 
 
 ## Classes
