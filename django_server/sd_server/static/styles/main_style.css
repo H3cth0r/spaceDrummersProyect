@@ -1,0 +1,408 @@
+@import "helvetica_font/stylesheet.css";                        /* Importing font stylesheet*/
+
+
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+
+*{
+    font-family: "Helvetica Now Display", sans-serif !important;
+    font-size: medium;
+    background-color: black;   
+    padding: 0%;
+    margin: 0%;
+}
+
+
+
+
+
+/* Snap Scroll config */
+html{
+    scroll-snap-type: y mandatory;
+}
+
+.general_site_div{
+    scroll-snap-align: start;
+    opacity: 0;
+}
+
+
+
+
+/* Scrollbar start */
+/* width */
+::-webkit-scrollbar {
+  width: 0.2vw;
+  height: 0.1vh;
+}
+
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white; 
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #444444;
+}
+
+::selection {
+  color: white;
+  background: #444444;
+}
+
+
+
+
+@media screen and (max-width: 751px) {
+   .navbar p{
+       font-size: 150%;
+   } 
+
+
+    .context_objective_div{
+        /* display: flex; */
+        width: 100vw;
+        height: auto;
+    }
+    #context_objective_header{
+        font-weight: bold;
+        font-size: 4rem;
+    }
+    .oc_spacer{
+        display: none;
+    }
+    .co_container{
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .co_container p{
+        text-align: justify;
+        min-width: 80vw;
+    }
+    .co_container img{
+        width: 14rem;
+        height: auto;
+        margin-top: 2rem;
+    }
+
+
+    /* How to div */
+
+    .how_to_spacer{
+        display: none;
+    }
+    .how_to_data{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: transparent;
+        align-items: flex-start;
+    }
+
+    .how_to_div div p{
+        background-color: transparent;
+        text-align: justify;
+        min-width: 80vw;
+    }
+    .how_to_spacer_two{
+        display: none;
+    }
+    .how_to_title_flex p{
+        font-weight: bold;
+        font-size: 30vw !important;
+        background-color: transparent;
+        margin-right: 0px;
+    }
+    .how_to_title_flex{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: transparent;
+    }
+
+
+
+    .user_cards_div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        height: 80vh;
+    }
+
+
+}
+
+
+
+p{
+    color: white;
+}
+
+/* NavBar */
+.navbar{
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    top: 0%;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar p{
+    background: transparent;
+    font-weight: 500;
+    margin: 1.5rem;
+}
+.navbar a{
+    width: 3rem;
+    height: auto;
+    margin: 1rem;
+    background-color: transparent;
+}
+
+.navbar a img{
+    width: 1.5rem;
+    height: auto;
+    background-color: transparent;
+}
+
+#navbar_id{
+    background-color: transparent;
+}
+
+
+/* Clicked sandwich menu */
+.close_clicked_sandwich_menu{
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    left: 0%;
+    width: 19vw;
+    height: 100vh;
+    background-color: transparent;
+}
+.clicked_sandwich_menu{
+    display: none;
+    /* display: flex; */
+    overflow: hidden;
+    position: fixed;
+    right: 0%;
+    width: 80vw;
+    height: 100vh;
+    background-color: #D3450D;
+    flex-direction: column;
+}
+.clicked_sandwich_menu nav{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul li{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul li a{
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 5rem;
+}
+.navbar_link_animation:hover{
+    text-decoration: underline !important;
+    color: #A43407 !important;
+}
+
+/* Main Title Div */
+.main_title_div{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../resources/space_invaders_background.gif');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+.main_title_div a{
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+.main_title_div div{
+    text-align: center;
+}
+.main_title_div a img{
+    width: 1.5rem;
+    height: auto;
+}
+
+
+
+/* Context & Objective div */
+.context_objective_div{
+    /* display: flex; */
+    width: 100vw;
+    height: 100vh;
+}
+#context_objective_header{
+    font-weight: bold;
+    font-size: 5rem;
+    color: #00A83B;
+}
+.oc_spacer{
+    width: 100vw;
+    height: 7rem;
+}
+.co_container{
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.co_container p{
+    text-align: justify;
+    max-width: 30vw;
+    max-height: 100vh;
+}
+.co_container img{
+    width: 14rem;
+    height: auto;
+}
+
+
+/* How to div */
+.how_to_div{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+.how_to_spacer{
+    width: 100vw;
+    height: 9rem;
+    background-color: transparent;
+}
+.how_to_data{
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-around;
+    background-color: transparent;
+    align-items: center;
+}
+
+.how_to_div div p{
+    background-color: transparent;
+    text-align: justify;
+    max-width: 40vw;
+    max-height: 100vh;
+}
+.how_to_keys{
+    display: flex;
+    justify-content: center;
+}
+.how_to_keys img{
+    width: 3.5rem;
+    height: auto;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.how_to_spacer_two{
+    width: 100vw;
+    height: 9rem;
+    background-color: transparent;
+}
+.how_to_title_flex p{
+    font-weight: bold;
+    font-size: 10vw!important;
+    background-color: transparent;
+    margin-right: 2rem;
+    color: #274A9F;
+}
+.how_to_title_flex{
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: flex-end;
+    background-color: transparent;
+}
+
+/* Team div */
+.team_div{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+.team_header_div{
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+    height: 20vh;
+    align-items: flex-end;
+}
+#team_title{
+    font-weight: bold;
+    font-size: 5rem;
+    color: #D3450D;
+    background-color: transparent;
+}
+
+.user_cards_div{
+    height: 80vh;
+    display: flex;
+    flex-direction: row wrap;
+    background-color: transparent;
+    justify-content: space-around;
+    align-items: center;
+}
+.user_cards_div div{
+    min-width: 20%;
+    height: 0;
+    padding-bottom: 20%;
+    /* background-color: #D3450D; */
+}
+
+.user_cards_div div{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.victor_card{
+    /* background-image: url('../resources/default_team_mate.jpg'); */
+    background-color: #E0E0E0;
+}
+.hector_card{
+    background-image: url('../resources/thats_me.jpeg');
+}
+.user_cards_div div p{
+    font-weight: 500;
+    font-size: 4vw;
+    text-align: end;
+    background-color: transparent;
+}
+.misael_card{
+    /* background-image: url('../resources/default_team_mate.jpg'); */
+    background-color: #E0E0E0;
+}
+.german_card{
+    /* background-image: url('../resources/default_team_mate.jpg'); */
+    background-color: #E0E0E0;
+}
