@@ -1,0 +1,274 @@
+/* Start dark color styling */
+@import "helvetica_font/stylesheet.css";                        /* Importing font stylesheet*/
+
+*{
+    font-family: "Helvetica Now Display", sans-serif !important;
+    font-size: medium;
+    background-color: black;   
+    padding: 0%;
+    margin: 0%;
+}
+
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+/* Scrollbar start */
+/* width */
+::-webkit-scrollbar {
+  width: 0.2vw;
+  height: 0.1vh;
+}
+
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white; 
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #444444;
+}
+
+::selection {
+  color: white;
+  background: #444444;
+}
+/* End dark color styling */
+
+@media screen and (max-width: 751px) {
+   .navbar p{
+       font-size: 150%;
+   } 
+
+   .main_log_reg_div{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+   }
+   .main_log_reg_div{
+       height: 100vh;
+       width: 40vw;
+   }
+}
+
+
+
+p{
+    color: white;
+}
+
+/* NavBar */
+.navbar{
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    top: 0%;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar p{
+    background: transparent;
+    font-weight: 500;
+    margin: 1.5rem;
+}
+.navbar a{
+    width: 3rem;
+    height: auto;
+    margin: 1rem;
+    background-color: transparent;
+}
+.navbar a img{
+    width: 1.5rem;
+    height: auto;
+    background-color: transparent;
+}
+
+#navbar_id{
+    background-color: transparent;
+}
+
+
+/* Clicked sandwich menu */
+.close_clicked_sandwich_menu{
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    left: 0%;
+    width: 19vw;
+    height: 100vh;
+    background-color: transparent;
+}
+.clicked_sandwich_menu{
+    display: none;
+    /* display: flex; */
+    overflow: hidden;
+    position: fixed;
+    right: 0%;
+    width: 80vw;
+    height: 100vh;
+    background-color: #D3450D;
+    flex-direction: column;
+}
+.clicked_sandwich_menu nav{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul li{
+    background-color: transparent;
+}
+.clicked_sandwich_menu nav ul li a{
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 5rem;
+}
+
+/* ==================================================  */
+
+
+
+
+/* Main log red div */
+.main_log_reg_div{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    align-items: center;
+    flex-direction: row; 
+}
+
+
+/* Sign up div */
+.sign_up_div{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+.sign_up_div a{
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two{
+    /* .,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,., */
+    /* display: flex; */
+    display: none;
+    animation: fadeInAnimation ease 3s;
+    flex-direction: row;
+    background-color: transparent;
+} 
+.sign_up_div_two div{
+    background-color: transparent;
+}
+.sign_up_div_two div div{
+    background-color: transparent;
+}
+.sign_up_div_two div div label{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two div div select{
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: transparent;
+}
+.sign_up_div_two div div input{
+    border: transparent;
+    background-color: white;
+}
+.ddl{
+    margin-right: 1rem;
+}
+.ddr{
+    margin-left: 1rem;
+}
+.sign_up_div_two div div{
+    display: flex;
+    flex-direction: column;
+} 
+
+#singup_button{
+    background-color: white;
+    color: white;
+}
+
+
+/* sign in div */
+.log_in_div{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;   
+}
+
+.log_in_div a{
+    color: white;
+    background-color: transparent;
+}
+.log_in_div_two{
+    /* display: flex; */
+    display: none;
+    animation: fadeInAnimation ease 3s;
+    flex-direction: row;
+    background-color: transparent;
+} 
+.log_in_div_two div{
+    background-color: transparent;
+}
+.log_in_div_two div div{
+    background-color: transparent;
+}
+.log_in_div_two div div label{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: transparent;
+}
+.log_in_div_two div div input{
+    border: transparent;
+    background-color: white;
+}
+
+.log_in_div_two div div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+/* =================>BUTTON<================= */
+.button{
+    margin-top: 2rem;
+    width: 6rem;
+    height: 2rem;
+    background-color: #1D9BF0;
+    color: white;
+    border: transparent;
+}
+.button_one{
+    display: none;
+    animation: fadeInAnimation ease 3s;
+}
+.button_two{
+    display: none;
+}

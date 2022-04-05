@@ -5,10 +5,11 @@ from json import loads, dumps
 import collections
 import sqlite3 
 from django.http import Http404
+from random import randrange
 # Create your views here.
 
 def index(request):
-    return HttpResponse('<h1> Hola desde Django</h1>')
+    return render(request, 'main.html')
 
 @csrf_exempt
 def levelstats(request):
@@ -29,3 +30,22 @@ def levelstats(request):
     d = {"Perfecto":"Datos subidos"}
 
     return JsonResponse(d, safe=False)
+
+def grafica(request):
+    name_var = 'username'
+    point_var = 'Points'
+    role = {"role": 'style'}
+
+    data = [[name_var,point_var, role]]
+
+
+    data.append(['Pepo117/Italy', randrange(100000), '#274A9F'])
+    data.append(['Alpha/Mexico', randrange(100000), '#1A7A3C'])
+    data.append(['ToxicV69/Japan', randrange(100000), '#D3450D'])
+
+    name_var_json = dumps(name_var)
+    point_var_json = dumps(point_var)
+    modified_data = dumps(data)
+
+    return render  (request,'grafica.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role})
+
