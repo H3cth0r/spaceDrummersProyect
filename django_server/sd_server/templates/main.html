@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Main stylesheet -->
+        <link rel="stylesheet" href="{%static 'styles/main_style.css'%}">
+        <!-- Importing anims js -->
+        <script src="{%static 'scripts/anime-master/anime-master/lib/anime.min.js'%}"></script>
+        <!-- importing my navbar animation -->
+        <script src="{%static 'scripts/navbar_animation.js'%}"></script>
+        <!-- Import on scroll appear function-->
+        <script src="{%static 'scripts/on_scroll_appear.js'%}"></script>
+
+        <title>SpaceDrummer</title>
+    </head>
+    <body>
+        <!-- Navbar -->
+       <div class="navbar" id="navbar_id">
+           
+            <p>SpaceDrummers</p>
+            <a  onclick="nav_bar_slide_left()"><img src="{%static 'resources/white_sandwich.png'%}" alt=""></a> 
+            <!-- <link href="{%static 'Miestilo.css'%}" rel="stylesheet"/>-->
+
+       </div>
+
+       <!-- clicked Sandwich menu -->
+       <div class="clicked_sandwich_menu">
+            <nav>
+                <ul id="myNav" class="navclass">
+                    <li><a class="navbar_link_animation" href="#main_title_id" onclick="nav_bar_slide_right()" id="main_menu_button">Main</a></li>
+                    <li><a class="navbar_link_animation" href="#context_objective_id" onclick="nav_bar_slide_right()" id="co_menu_button">C&O</a></li>
+                    <li><a class="navbar_link_animation" href="#how_to_id" onclick="nav_bar_slide_right()" id="how_to_menu_button">How to</a></li>
+                    <li><a class="navbar_link_animation" href="#team_id" onclick="nav_bar_slide_right()" id="our_team_menu_button">Our Team</a></li>
+                    <li><a class="navbar_link_animation" href="stats.html">Stats</a></li>
+                    <li><a class="navbar_link_animation" href="log_reg.html">Play</a></li>
+                </ul>
+            </nav>
+       </div>
+       <div class="close_clicked_sandwich_menu" onclick="nav_bar_slide_right()"></div>
+
+        <!-- Main title  -->
+       <div class="main_title_div general_site_div" id="main_title_id">
+           <a href="log_reg.html"><div style="background-color: transparent;"><img src="{%static 'resources/white_play_button.png'%}" alt="" style="background-color: transparent;"><p style="background-color: transparent;">¡Start Playing!</p></div></a>
+       </div>
+       
+       
+       <!-- Context & Objective -->
+       <div class="context_objective_div general_site_div appear_class" id="context_objective_id">
+            <p id="context_objective_header">Context & Objective</p>
+            <div class="oc_spacer"></div>
+            <div class="co_container">
+                <p>We are collaborating with our training partner, which is the Percussive Arts Society. 
+                The focus of our project is more centered on the pedagogic area, in specific, for the
+                beginners on percussion arts, so they can get familiarized with different rhythms,
+                percussive instruments sounds, tempos, etc. <br> <br>So the General idea of the game is for the
+                begginer percussive student, to familiarize, associate and to recognize sound for reply
+                to stimuly, and meassuring tempos, for completing a level and letting the user get better
+                and faster. <br>
+                </p>
+                <img src="{%static 'resources/no_background_alien.png'%}" alt="">
+            </div>
+       </div>
+       
+       
+       <!-- How to -->
+       <div class="how_to_div general_site_div appear_class" id="how_to_id">
+           <div class="how_to_spacer"></div>
+            <div class="how_to_data">
+                    <p>Basically, the game is composed of a progression of attack and defense rounds. Each round
+                        starts with an attack phase, where the player can see some aliens getting into the scene. 
+                        The aliens will appear on the map with a specific rhythm and with some percussion audio, 
+                        depending on the type of alien, that the player must memorize for the second phase of the 
+                        round. After the attack aliens are presented to the player, the game will zoom-int into the 
+                        player’s ship, so he can no longer see the incoming aliens, but the player will be forced 
+                        to memorize the rhythm and must repeat the rhythm to defend himself. The player will 
+                        complete a level if he successfully destroys the aliens without losing all his life. After 
+                        the user completes all the rounds, he will have the option to continue, but each time, the 
+                        rhythm will get faster and faster. The aliens will descend from four invisible columns, 
+                        and so the player will have four buttons for shooting ramrods to destroy the aliens. 
+                    </p>
+                    
+                    <div>
+                        <p>The four default controls of the game will be set to be ‘a’, ‘s’, ‘d’, and ‘f’. The 
+                        player will be able to change the control layout to be whatever keyboard keys to be, on 
+                        the configuration menu.</p>
+                        <div style="height: 4rem;"></div>
+                        <div class="how_to_keys">
+                            <img src="{%static 'resources/letter-a-icon.png'%}" alt="">
+                            <img src="{%static 'resources/letter-d-icon.png'%}" alt="">
+                            <img src="{%static 'resources/letter-f-icon.png'%}" alt="">
+                            <img src="{%static 'resources/letter-s-icon.png'%}" alt="">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="how_to_spacer_two"></div>
+            <div class="how_to_title_flex"><p id="how_to_title">How to?</p></div>
+
+       </div>
+       
+       
+       <!-- Team -->
+       <div class="team_div  appear_class" id="team_id">
+           <div class="team_header_div">
+               <div style="margin-left: 4rem;"></div>
+                <p id="team_title">Team</p>
+            </div>
+
+            <div class="on_hover_info_victor"></div>
+            <div class="on_hover_info_hector"></div>
+            <div class="on_hover_info_misael"></div>
+            <div class="on_hover_info_german"></div>
+
+            <div class="user_cards_div">
+                <div class="victor_card">
+                    <p>Victor<br> P</p>
+                </div>
+
+                <div class="hector_card">
+                    <p>Héctor<br> M</p>
+                </div>
+
+                <div class="misael_card">
+                    <p>Misael <br> C</p>
+                </div>
+
+                <div class="german_card">
+                    <p>German <br> W</p>
+                </div>
+            </div>
+       </div>
+    </body>
+</html>
