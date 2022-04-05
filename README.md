@@ -9,7 +9,7 @@
 </ul>
 
 ## General Project Information
-This pro
+This project aims to make a videogame, a running server and a webpage for said game. 
 
 ## General Project Structure
 - **website_sd(Space Drummers website)** <br> Here we store every file required to view and run the official SpaceDrummers project website. On the main folder you will find the html files where the resources, scripts and style are being applied.
@@ -19,9 +19,7 @@ This pro
 - **django_server**: Here are located all the correspongin django files and exes for running our server.
 - **vectors**: Here are located the design object located on the website and unity game.
 - **staticAPISs**: This are the examples of APIs that will give functionality to the game.
-- **dataBse**: we saved all files relationated with the database architecture.
-
-level data
+- **dataBse**: We saved all files relationated with the database architecture.
 
 
 ## Classes
