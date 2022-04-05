@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'main.html')
 
 @csrf_exempt
-def levelstats(request):
+def unityLevelstats(request):
     body_unicode = request.body.decode('utf-8')
     body = loads(body_unicode)
     levelId = body['levelId']
