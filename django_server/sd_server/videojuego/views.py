@@ -32,6 +32,12 @@ def levelstats(request):
     return JsonResponse(d, safe=False)
 
 def grafica(request):
+    mydb = sqlite3.connect("db.sqlite3")
+    cur = mydb.cursor()
+    stringSQL = '''SELECT Gameprofile.username, User.country, Levelstats.score FROM (User JOIN Gameprofile ON User.id = Gameprofile.userId) JOIN Levelstats ON Gameprofile.username = Levelstats.username ORDER by score DESC'''
+    table = cur.execute(stringSQL)
+    table = table.fetchall()
+    
     name_var = 'username'
     point_var = 'Points'
     role = {"role": 'style'}
@@ -39,9 +45,10 @@ def grafica(request):
     data = [[name_var,point_var, role]]
 
 
-    data.append(['Pepo117/Italy', randrange(100000), '#274A9F'])
-    data.append(['Alpha/Mexico', randrange(100000), '#1A7A3C'])
-    data.append(['ToxicV69/Japan', randrange(100000), '#D3450D'])
+    
+    data.append([table[1][0]+" / "+table[1][1], table[1][2], '#1A7A3C'])
+    data.append([table[0][0]+" / "+table[0][1], table[0][2], '#274A9F'])
+    data.append([table[2][0]+" / "+table[2][1], table[2][2], '#D3450D'])
 
     name_var_json = dumps(name_var)
     point_var_json = dumps(point_var)
