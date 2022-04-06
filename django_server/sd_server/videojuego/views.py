@@ -11,40 +11,43 @@ def index(request):
 
 @csrf_exempt #directiva
 def unityLogin(request):
-    body_unicode = request.body.decode('utf-8')
-    body = loads(body_unicode)
-    username = body['username']
-    hashedPwdReq = body['hashedPwd']
-    mydb = sqlite3.connect("db.sqlite3")
-    cur = mydb.cursor()
-    stringSQL = '''SELECT id, hashedPwd FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?)'''
-    row = cur.execute(stringSQL, (username,))
-    row = row.fetchone()
-    
-    if row != None:
-        userId = row[0]
-        hashedPwdDB = row[1]
-        accessGranted = 0
-        currentLevel=-1
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        body = loads(body_unicode)
+        print(body_unicode)
+        username = body['username']
+        hashedPwdReq = body['hashedPwd']
+        mydb = sqlite3.connect("db.sqlite3")
+        cur = mydb.cursor()
+        stringSQL = "SELECT id, hashedPwd FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?)"
+        row = cur.execute(stringSQL, (username,))
+        row = row.fetchone()
         
-        if hashedPwdReq == hashedPwdDB:
-            accessGranted = 1
-            stringSQL = '''SELECT currentLevel FROM gameprofile WHERE username=?'''
-            row = cur.execute(stringSQL, (username,))
-            row = row.fetchone()
-            currentLevel = row[0]
-        
-        d = {
-                "userId":userId,
-                "username":username,
-                "accessGranted":accessGranted,
-                "currentLevel":currentLevel
-                }
+        if row != None:
+            userId = row[0]
+            hashedPwdDB = row[1]
+            accessGranted = 0
+            currentLevel=-1
+            
+            if hashedPwdReq == hashedPwdDB:
+                accessGranted = 1
+                stringSQL = "SELECT currentLevel FROM gameprofile WHERE username=?"
+                row = cur.execute(stringSQL, (username,))
+                row = row.fetchone()
+                currentLevel = row[0]
+            
+            d = {
+                    "userId":userId,
+                    "username":username,
+                    "accessGranted":accessGranted,
+                    "currentLevel":currentLevel
+                    }
 
-    else:
-        raise Http404("username does not exist")
+        else:
+            raise Http404("username does not exist")
 
-    return JsonResponse(d, safe=False)
+        return JsonResponse(d, safe=False)
+    return HttpResponse("Use POST")
   
 @csrf_exempt
 def unityLevelstats(request):
