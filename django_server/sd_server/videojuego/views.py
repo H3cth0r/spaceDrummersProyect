@@ -93,3 +93,44 @@ def grafica(request):
     modified_data = dumps(data)
 
     return render  (request,'grafica.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role})
+
+
+@csrf_exempt
+def topScore(request):
+    body_unicode = request.body.decode('utf-8')
+    body = loads(body_unicode)
+    username = body['username']
+    mydb = sqlite3.connect("db.sqlite3")
+    cur = mydb.cursor()
+    stringSQL = '''SELECT score , timeWhenScore FROM Levelstats WHERE username = ?'''
+    row = cur.execute(stringSQL, (username,))
+    row = row.fetchone()
+    stringSQL2 = '''SELECT username, score , timeWhenScore FROM Levelstats ORDER by score DESC LIMIT 3'''
+    row2 = cur.execute(stringSQL2)
+    row2 = row2.fetchall()
+    d={ "userTopScore":{
+            "score":row[0],
+            "timeWhenScore":row[1]
+        },
+        "topTree":{
+            "t1":{
+            "username":row2[0][0] ,
+            "score":row2[0][1],
+            "timeWhenScore": row2[0][2]
+            },
+            "t2":{
+            "username":row2[1][0] ,
+            "score":row2[1][1],
+            "timeWhenScore": row2[1][2]
+            },
+            "t3":{
+            "username":row2[2][0] ,
+            "score":row2[2][1],
+            "timeWhenScore": row2[2][2]
+            }
+
+        }
+
+    }
+
+    return JsonResponse(d, safe=False)
