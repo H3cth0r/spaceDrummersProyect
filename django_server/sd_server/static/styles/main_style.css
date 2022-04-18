@@ -31,7 +31,7 @@ html{
 
 .general_site_div{
     scroll-snap-align: start;
-    opacity: 0;
+    opacity: 1;
 }
 
 
@@ -285,6 +285,21 @@ p{
 .co_container img{
     width: 14rem;
     height: auto;
+}
+
+/*div de los ojos  n.n*/
+.imageyes_div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.co_container_imgeyes{
+    text-align: center;
+    background-color: white;
 }
 
 

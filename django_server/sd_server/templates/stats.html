@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% load static %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Jquery -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- importing stats stylesheet -->
-        <link rel="stylesheet" href="styles/stats_style.css">
+        <link rel="stylesheet" href="{%static 'styles/stats_style.css'%}">
         <!-- Importing anims js -->
-        <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
+        <script src="{%static 'scripts/anime-master/anime-master/lib/anime.min.js'%}"></script>
         <!-- importing my navbar animation -->
-        <script src="scripts/navbar_animation.js"></script>
+        <script src="{%static 'scripts/navbar_animation.js'%}"></script>  
         <!-- Import on scroll appear function-->
-        <script src="scripts/on_scroll_appear.js"></script>
+        <script src="{%static 'scripts/on_scroll_appear.js'%}"></script>
+      
         <title>Stats</title>
     </head>
     <body>
@@ -20,7 +22,7 @@
        <div class="navbar" id="navbar_id">
            
             <p>SpaceDrummers</p>
-            <a  onclick="nav_bar_slide_left()"><img src="resources/black_sandwich.png" alt=""></a> 
+            <a  onclick="nav_bar_slide_left()"><img src="{%static 'resources/black_sandwich.png'%}" alt=""></a> 
 
        </div>
 
@@ -28,9 +30,9 @@
        <div class="clicked_sandwich_menu">
             <nav>
                 <ul>
-                    <li><a class="navbar_link_animation" href="main.html" onclick="nav_bar_slide_right()">Main</a></li>
-                    <li><a class="navbar_link_animation" href="stats.html">Stats</a></li>
-                    <li><a class="navbar_link_animation" href="log_reg.html">Play</a></li>
+                    <li><a class="navbar_link_animation" href="main" onclick="nav_bar_slide_right()">Main</a></li>
+                    <li><a class="navbar_link_animation" href="stats">Stats</a></li>
+                    <li><a class="navbar_link_animation" href="log_reg">Play</a></li>
                 </ul>
             </nav>
        </div>
@@ -46,25 +48,72 @@
        <!-- Total played hours & countries that play de most-->
        <div class="played_hours_div general_site_div">
            <p>Countries that play the most.</p>
-           <img src="resources/countries_graph.png" alt="">
+           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+           <script type="text/javascript">
+             google.charts.load('current', {'packages':['corechart']});
+             google.charts.setOnLoadCallback(drawChart);
+       
+             function drawChart() {
+       
+               var data = google.visualization.arrayToDataTable({{valuesC|safe}});
+       
+               var options = {
+                 title: 'My Daily Activities'
+               };
+       
+               var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+       
+               chart.draw(data, options);
+             }
+           </script>
+
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+
        </div>
        
        <!-- Ages that play the most -->
-       <div class="ages_div general_site_div appear_class">
+       <div class="ages_div general_site_div">
             <p>Ages that play the most.</p>
-            <img src="resources/ages_graph.png" alt="">
+            <img src="{%static 'resources/ages_graph.png'%}" alt="">
        </div>
        
        <!-- Our best global players -->
-       <div class="best_global_players_div general_site_div appear_class">
+       <div class="best_global_players_div general_site_div">
            <p>Our best global players.</p>
-           <img src="resources/podium_graph.png" alt="">
+           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+           <script type="text/javascript">
+             google.charts.load("current", {packages:['corechart']});
+             google.charts.setOnLoadCallback(drawChart);
+             function drawChart() {
+               var data = google.visualization.arrayToDataTable({{values|safe}});
+         
+               var view = new google.visualization.DataView(data);
+               view.setColumns([0, 1,
+                                { calc: "stringify",
+                                  sourceColumn: 1,
+                                  type: "string",
+                                  role: "annotation" },
+                                2]);
+         
+               var options = {
+                 width: 600,
+                 height: 400,
+                 bar: {groupWidth: "95%"},
+                 legend: {position: "none" },
+                 hAxis : {gridlines: {color: 'transparent'}},
+                 vAxis : {gridlines: {color: 'transparent'}, textPosition: 'none'}
+               };
+               var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+               chart.draw(view, options);
+           }
+           </script>
+         <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
        </div>
        
        <!-- Best scores by level -->
-       <div class="best_scores_by_level_div general_site_div appear_class">
+       <div class="best_scores_by_level_div general_site_div">
             <p>Best scores by level.</p>
-           <img src="resources/table_graph.png" alt="">
+           <img src="{%static 'resources/table_graph.png'%}" alt="">
        </div>
 
 
