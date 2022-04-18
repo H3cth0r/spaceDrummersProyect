@@ -4,7 +4,7 @@ using System.IO;
 namespace ReadTextTabs{
 
 
-        class TabReader{
+        public class TabReader{
             public Dictionary<char, int> dictionary_tabs = new Dictionary<char, int>(){
                 {'C', 0},
                 {'H', 1},
@@ -17,7 +17,7 @@ namespace ReadTextTabs{
 
             // Constructor
             public TabReader(string t_txt_file_path){
-                txt_file_path = t_txt_file_path;
+                this.txt_file_path = t_txt_file_path;
                 read_txt_file();
             }
 
