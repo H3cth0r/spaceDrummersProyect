@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% load static %}
         <!-- importing jquery -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- importing curren stylesheet -->
-        <link rel="stylesheet" href="styles/log_reg_style.css">
+        <link rel="stylesheet" href="{%static 'styles/log_reg_style.css'%}">
         <!-- importing anime.js script -->
-        <script src="scripts/anime-master/anime-master/lib/anime.min.js"></script>
+        <script src="{%static 'scripts/anime-master/anime-master/lib/anime.min.js'%}"></script>
         <!-- importing my navbar animation -->
-        <script src="scripts/navbar_animation.js"></script>
+        <script src="{%static 'scripts/navbar_animation.js'%}"></script>
         <!-- importing function animations for log and reg buttons -->
-        <script src="scripts/sign_reg.js"></script>
+        <script src="{%static 'scripts/sign_reg.js'%}"></script>
         <!-- import user data processing and redirect -->
-        <script src="scripts/process_form_data.js"></script>
+        <script src="{%static 'scripts/process_form_data.js'%}"></script>
         <title>get_in</title>
     </head>
 
@@ -22,7 +23,7 @@
        <div class="navbar" id="navbar_id">
            
             <p>SpaceDrummers</p>
-            <a  onclick="nav_bar_slide_left()"><img src="resources/white_sandwich.png" alt=""></a> 
+            <a  onclick="nav_bar_slide_left()"><img src="{%static 'resources/white_sandwich.png'%}  " alt=""></a> 
 
        </div>
 
@@ -30,12 +31,12 @@
        <div class="clicked_sandwich_menu">
             <nav>
                 <ul>
-                    <li><a href="main.html#main_title_id" onclick="nav_bar_slide_right()">Main</a></li>
-                    <li><a href="main.html" onclick="nav_bar_slide_right()">C&O</a></li>
-                    <li><a href="main.html" onclick="nav_bar_slide_right()">How to</a></li>
-                    <li><a href="main.html" onclick="nav_bar_slide_right()">Our Team</a></li>
-                    <li><a href="stats.html">Stats</a></li>
-                    <li><a href="log_reg.html">Play</a></li>
+                    <li><a href="main" onclick="nav_bar_slide_right()">Main</a></li>
+                    <li><a href="main" onclick="nav_bar_slide_right()">C&O</a></li>
+                    <li><a href="main" onclick="nav_bar_slide_right()">How to</a></li>
+                    <li><a href="main" onclick="nav_bar_slide_right()">Our Team</a></li>
+                    <li><a href="stats">Stats</a></li>
+                    <li><a href="log_reg">Play</a></li>
                 </ul>
             </nav>
        </div>
@@ -109,7 +110,7 @@
                                 <option value="Congo">Congo</option>
                                 <option value="Cook Islands">Cook Islands</option>
                                 <option value="Costa Rica">Costa Rica</option>
-                                <option value="Cote DIvoire">Cote DIvoire</option>
+                                <option value="Cote DIvoire">Cote Divoire</option>
                                 <option value="Croatia">Croatia</option>
                                 <option value="Cuba">Cuba</option>
                                 <option value="Curaco">Curacao</option>
@@ -170,8 +171,8 @@
                                 <option value="Kazakhstan">Kazakhstan</option>
                                 <option value="Kenya">Kenya</option>
                                 <option value="Kiribati">Kiribati</option>
-                                <option value="Korea North">Korea North</option>
-                                <option value="Korea Sout">Korea South</option>
+                                <option value="North Korea">North Korea</option>
+                                <option value="South Korea">South Korea</option>
                                 <option value="Kuwait">Kuwait</option>
                                 <option value="Kyrgyzstan">Kyrgyzstan</option>
                                 <option value="Laos">Laos</option>

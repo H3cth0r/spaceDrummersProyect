@@ -14,7 +14,7 @@ html{
 
 .general_site_div{
     scroll-snap-align: start;
-    opacity: 0;
+    opacity: 1;
 }
 
 
@@ -201,6 +201,7 @@ p{
     flex-direction: row-reverse;
     align-items: center;
     justify-content: flex-end;
+    opacity: 1;
 }
 .ages_div img{
     /* height: 20rem; */
