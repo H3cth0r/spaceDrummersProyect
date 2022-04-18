@@ -121,7 +121,7 @@ def stats(request):
           ['Tonga'],['Trinidad & Tobago'],['Tunisia'],['Turkey'],['Turkmenistan'],['Turks & Caicos Is'],['Tuvalu'],['Uganda'],['United Kingdom'],['Ukraine'],['United Arab Erimates'],['United States of America'],['Uraguay'],['Uzbekistan'],['Vanuatu'],['Vatican City State'],['Venezuela'],['Vietnam'],['Virgin Islands (Brit)'],['Virgin Islands (USA)'],
           ['Wake Island'],['Wallis & Futana Is'],['Yemen'],['Zaire'],['Zambia'],['Zimbabwe']]
 
-    for i in paises-1:
+    for i in paises:
         stringSQL = 'SELECT count(name) from User WHERE country = "'+i[0]+'";'
         table = cur.execute(stringSQL)
         table = table.fetchall()
