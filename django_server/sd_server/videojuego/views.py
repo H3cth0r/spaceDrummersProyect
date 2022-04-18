@@ -86,7 +86,7 @@ def user_info(request):
 def stats(request):
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
-    stringSQL = '''SELECT Gameprofile.username, User.country, Levelstats.score FROM (User JOIN Gameprofile ON User.id = Gameprofile.userId) JOIN Levelstats ON Gameprofile.username = Levelstats.username WHERE levelId = 1 ORDER by score DESC LIMIT 3'''
+    stringSQL = '''SELECT Gameprofile.username, User.country, Levelstats.score FROM (User JOIN Gameprofile ON User.id = Gameprofile.userId) JOIN Levelstats ON Gameprofile.username = Levelstats.username ORDER by score DESC LIMIT 3'''
     table = cur.execute(stringSQL)
     table = table.fetchall()
     
@@ -95,9 +95,13 @@ def stats(request):
     role = {"role": 'style'}
     country_var = 'Country'
     people_var = 'People'
+    level_var = 'LEVEL'
+    username_var = 'USERNAME'
+    score_var = 'SCORE'
 
     data = [[name_var,point_var, role]]
     dataC = [[country_var, people_var]]
+    dataB = [[level_var, username_var, score_var]]
 
     data.append([table[1][0]+" / "+table[1][1], table[1][2], '#1A7A3C'])
     data.append([table[0][0]+" / "+table[0][1], table[0][2], '#274A9F'])
