@@ -79,7 +79,8 @@
        
        <!-- Our best global players -->
        <div class="best_global_players_div">
-           <p>Our best global players.</p>
+           <p class="center">Our best global players.</p>
+           <br>
            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
            <script type="text/javascript">
              google.charts.load("current", {packages:['corechart']});
@@ -96,8 +97,8 @@
                                 2]);
          
                var options = {
-                 width: 900,
-                 height: 600,
+                 width: 750,
+                 height: 650,
                  bar: {groupWidth: "95%"},
                  legend: {position: "none" },
                  hAxis : {gridlines: {color: 'transparent'}},
@@ -113,7 +114,25 @@
        <!-- Best scores by level -->
        <div class="best_scores_by_level_div ">
             <p>Best scores by level.</p>
-           <img src="{%static 'resources/table_graph.png'%}" alt="">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load('current', {'packages':['table']});
+              google.charts.setOnLoadCallback(drawTable);
+        
+              function drawTable() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Level');
+                data.addColumn('string', 'User');
+                data.addColumn('number', 'score');
+                data.addRows({{valuesB|safe}});
+        
+                var table = new google.visualization.Table(document.getElementById('table_div'));
+        
+                table.draw(data, {showRowNumber: true, width: 700, height: '100%'});
+              }
+            </script>
+
+            <div id="table_div"></div>
        </div>
 
 

@@ -17,7 +17,9 @@ html{
     opacity: 1;
 }
 
-
+.center{
+    text-align: center;
+}
 
 /* Scrollbar start */
 /* width */

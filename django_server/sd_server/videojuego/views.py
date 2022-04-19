@@ -101,7 +101,7 @@ def stats(request):
 
     data = [[name_var,point_var, role]]
     dataC = [[country_var, people_var]]
-    dataB = [[level_var, username_var, score_var]]
+    dataB = []
 
     data.append([table[1][0]+" / "+table[1][1], table[1][2], '#1A7A3C'])
     data.append([table[0][0]+" / "+table[0][1], table[0][2], '#274A9F'])
@@ -138,8 +138,24 @@ def stats(request):
     people_var_json = dumps(people_var)
     modified_dataC = dumps(dataC)
 
-    return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json})
+    i = 0
+
+    while (i <= 8):
+        i = i + 1
+        r = str(i)
+        stringSQL = 'SELECT Levelstats.levelId, Levelstats.username, Levelstats.score  FROM Levelstats WHERE levelId = '+r+' ORDER by score DESC LIMIT 1'
+        table = cur.execute(stringSQL)
+        table = table.fetchall()
+        dataB.append([('Level '+ r), table[0][1], table[0][2]])
+
+    level_var_json = dumps(level_var)
+    username_var_json = dumps(level_var)
+    score_var_json = dumps(score_var)
+    modified_dataB = dumps(dataB)
+
+    return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
     #,{'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json}
+   
 
 @csrf_exempt
 def topScore(request):
