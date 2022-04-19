@@ -119,7 +119,7 @@ p{
     overflow: hidden;
     position: fixed;
     left: 0%;
-    width: 19vw;
+    width: 60vw;
     height: 100vh;
     background-color: transparent;
 }
@@ -129,7 +129,7 @@ p{
     overflow: hidden;
     position: fixed;
     right: 0%;
-    width: 80vw;
+    width: 40vw;
     height: 100vh;
     background-color: #D3450D;
     flex-direction: column;

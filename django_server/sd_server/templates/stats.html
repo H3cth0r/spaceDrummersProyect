@@ -58,7 +58,13 @@
                var data = google.visualization.arrayToDataTable({{valuesC|safe}});
        
                var options = {
-                 title: 'My Daily Activities'
+                 title: 'Quantity of players in each country',
+                 backgroundColor:'transparent',
+                  
+                 is3D:true,
+
+                 
+                 
                };
        
                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
