@@ -82,10 +82,10 @@
             var data = google.visualization.arrayToDataTable({{Edad|safe}});
               
             var options = {
-              title: 'Age vs. Weight comparison',
-              hAxis: {title: 'Edad', minValue: 10, maxValue: 20},
+              title: 'Edad de los jugadores',
+              hAxis: {title: 'Edad', minValue: 10, maxValue: 40},
               vAxis: {title: 'Personas', minValue: 0, maxValue: 10},
-              legend: 'none'
+              
             };
 
             var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
