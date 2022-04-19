@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt #para la directiva
@@ -5,6 +6,8 @@ import collections
 from random import randrange
 from json import loads, dumps #para trabajar con json
 import sqlite3
+#import django.http import hhtp404
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'main.html')
@@ -69,14 +72,15 @@ def unityLevelstats(request):
     cur.execute(stringSQL, (levelId, username, score, timeWhenScore, kos, failedShoots))
     mydb.commit()
 
-    d = {"Perfecto":"Datos subidos"}
+    d = { "informationRecived":1}
 
     return JsonResponse(d, safe=False)
 
 
 def log_reg(request):
-    return render(request, 'log_reg.html')
+    return render(request, 'registration/login.html')
 
+@login_required
 def user_info(request):
     return render(request, 'user_info.html')
 
@@ -223,4 +227,40 @@ def topScore(request):
     }
 
     return JsonResponse(d, safe=False)
-    
+
+
+@login_required   
+def priv(request):
+    usuario = request.user
+    print(usuario)
+
+    return HttpResponse('Hola')
+
+    '''
+    mydb = sqlite3.connect('db.sqlite3')
+    cur = mydb.cursor()
+    stringSQL = 'SELECT username, userId, currentLevel FROM Gameprofile WHERE django_user=?'
+    rows = cur.execute(stringSQL,(str(usuario),))
+    rr = rows.fetchone()
+    rows = cur.execute(stringSQL,(str(usuario),))
+    if rr == None:
+        raise Http404('user_id does not exist')
+    else:
+        lista_salida = []
+        for r in rows:
+            print(r)
+            d = {}
+            d['id'] = r[0]
+            d['username'] = r[1]
+            d["score"] = r[3]
+            lista_salida.append(d)
+        j = dumps(lista_salida)
+    return HttpResponse(j, content_type="text/json-comment-filtered")'''
+
+
+
+
+
+
+
+

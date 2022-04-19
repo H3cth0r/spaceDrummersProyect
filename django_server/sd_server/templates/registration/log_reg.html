@@ -54,7 +54,7 @@
                 <div class="sign_up_div_two">
                     <div class="ddl">
                         <div><label for="sign_up_name">Name</label><input type="text" id="sign_up_name"></div>
-                        <div><label for="sign_up_mail">Mail</label><input type="text" id="sign_up_mail"></div>
+                        <div><label for="sign_up_mail">email</label><input type="text" id="sign_up_mail"></div>
                         <div><label for="sign_up_password">Password</label><input type="password" id="sign_up_password"></div>
                         <div><label for="sign_up_country">Country</label>
                             <select id="sign_up_country" name="country">
@@ -310,7 +310,7 @@
                     <div class="ddr">
                         <div><label for="sign_up_lastname">Lastname</label><input type="text" id="sign_up_lastname"></div>
                         <div><label for="sign_up_username">Username</label><input type="text" id="sign_up_username"></div>
-                        <div><label for="sign_up_birthday">Birthday</label><input type="text" id="sign_up_birthday"></div>
+                        <div><label for="sign_up_birthday">Birthday</label><input type="date" id="sign_up_birthday"></div>
                         <div><label for="sign_up_gender">Gender</label>
                             <select name="" id="sign_up_gender">
                                 <option value="Female">Female</option>
@@ -324,16 +324,16 @@
             </div>
 
             <!-- login_div -->
-            <div class="log_in_div">
-                <a href="#" id="login_a" onclick="on_click_log_in()">Login</a>
-                <div class="log_in_div_two">
-                    <div class="center_log_in_div">
-                        <div><label for="log_in_username">Username / Email</label><input type="text" id="log_in_username"></div>
-                        <div><label for="log_in_password">Password</label><input type="password" id = "log_in_password"></div>
+                <div class="log_in_div">
+                    <a href="#" id="login_a" onclick="on_click_log_in()">Login</a>
+                    <div class="log_in_div_two">
+                        <div class="center_log_in_div">
+                            <div><label for="log_in_username">Username / Email</label><input type="text" id="log_in_username"></div>
+                            <div><label for="log_in_password">Password</label><input type="password" id = "log_in_password"></div>
+                        </div>
                     </div>
+                    <button type="button" class="button button_two" onclick="process_login_data();" href="accounts/">Login</button>
                 </div>
-                <button type="button" class="button button_two" onclick="process_login_data();">Login</button>
-            </div>
 
        </div>
 

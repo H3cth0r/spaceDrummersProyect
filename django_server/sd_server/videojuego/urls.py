@@ -1,4 +1,5 @@
-from django.urls import path
+from xml.etree.ElementInclude import include
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -13,5 +14,10 @@ urlpatterns = [
     path('user_info', views.user_info, name='user_info'),
     path('stats', views.stats, name='stats'),
     #path('agr', views.agr, name='agr'),
+    path('priv', views.priv, name='priv'),
+]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
