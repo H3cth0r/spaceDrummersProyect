@@ -153,7 +153,34 @@ def stats(request):
     score_var_json = dumps(score_var)
     modified_dataB = dumps(dataB)
 
-    return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
+     # Histograma de las edades de los jugadores
+    stringSQL = 'SELECT count(age) FROM User'
+    tablaEda = cur.execute(stringSQL)
+    tablaEda = tablaEda.fetchone()
+    numEda = tablaEda[0]
+    stringSQL = 'SELECT age FROM User'
+    tablaEda = cur.execute(stringSQL)
+    tablaEda = tablaEda.fetchall()
+    cantNum = []
+    numRep = []
+    for i in range(numEda):
+        cantNum.append(tablaEda[i])
+    cantNum = list(set(cantNum))
+
+    for i in range(len(cantNum)):
+        num=0
+        for j in range(numEda):
+            if cantNum[i]==tablaEda[j]:
+                num+=1
+        numRep.append(num)
+    dataUni=[['Edad','Cantidad']]
+    for i in range(len(cantNum)):
+        dataUni.append([cantNum[i] ,numRep[i]])
+    
+    modificada = dumps(dataUni)
+
+    
+    return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json,'Edad':modificada, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
     #,{'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json}
    
 
