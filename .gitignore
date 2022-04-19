@@ -71,5 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # ignore c# directorys
-unity_single_scripts/bin
-unity_single_scripts/obj
+single_scripts/bin
+single_scripts/obj
