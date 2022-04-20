@@ -49,7 +49,7 @@ function process_register_data(){
                               'user_gender':    $('#sign_up_gender').val()
                             };
     console.log(user_register_data);
-    if(continue_next==true)window.location.href = "user_info.html";
+    /*if(continue_next==true)window.location.href = "user_info.html";*/
 }
 
 function process_login_data(){
@@ -69,5 +69,5 @@ function process_login_data(){
     break;
   }
 
-  if(continue_next==true)window.location.href  = "user_info.html";
+  /*if(continue_next==true)window.location.href  = "user_info.html";*/
 }

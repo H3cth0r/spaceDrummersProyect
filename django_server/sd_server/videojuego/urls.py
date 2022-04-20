@@ -8,16 +8,17 @@ urlpatterns = [
     path('main', views.main, name='main'),
     path('unityLevelstats', views.unityLevelstats, name='unityLevelstats'),
     path('topScore', views.topScore, name='topScore'),
-    #path('main', views.main, name='main'),
-    #path('grafica', views.grafica, name='grafica'),
-    path('log_reg', views.log_reg, name='log_reg'),
+    path('login', views.login, name='login'),
     path('user_info', views.user_info, name='user_info'),
     path('stats', views.stats, name='stats'),
-    #path('agr', views.agr, name='agr'),
     path('priv', views.priv, name='priv'),
+    path('loginA', views.loginA, name='loginA')
 ]
 
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
+    #path('main', views.main, name='main'),
+    #path('grafica', views.grafica, name='grafica'),
+    #path('agr', views.agr, name='agr'),

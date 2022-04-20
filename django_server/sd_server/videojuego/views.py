@@ -77,12 +77,15 @@ def unityLevelstats(request):
     return JsonResponse(d, safe=False)
 
 
-def log_reg(request):
+def login(request):
     return render(request, 'registration/login.html')
 
 @login_required
 def user_info(request):
     return render(request, 'user_info.html')
+
+def loginA(request):
+    
 
 
     
