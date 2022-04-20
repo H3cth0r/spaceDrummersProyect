@@ -1,4 +1,7 @@
 
+import email
+from pyexpat import model
+from statistics import mode
 from django.db import models
 
 # Create your models here.
@@ -19,7 +22,25 @@ from django.contrib.auth.models import (
 
 
 """
+
+
+class User(models.Model):
+    name = models.CharField(max_length=30)
+    lastName = models.CharField(max_length=60)
+    age = models.IntegerField(max_length=3)
+    email = models.CharField(max_length=60)
+    hashedPwd = models.CharField()
+    country = models.CharField(max_length=20)
+    gender = models.CharField(max_length=10)
+    admim = models.CharField()
+    last_Login = models.CharField()
+
+class Gameprofile(models.Model):
+    username = models.CharField()
+    currentLevel = models.IntegerField()
+
 """
+
 class MyUserManager(BaseUserManager):
     def                 create_user(self, t_name, t_lastName, t_age, t_email, t_password, t_country):
         if not  t_name:

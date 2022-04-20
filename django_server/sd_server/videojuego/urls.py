@@ -13,6 +13,7 @@ urlpatterns = [
     path('stats', views.stats, name='stats'),
     path('priv', views.priv, name='priv'),
     # path('loginA', views.loginA, name='loginA')
+    path('unityGamesession', views.unityGamesession, name='unityGamesession'),
 ]
 
 urlpatterns += [

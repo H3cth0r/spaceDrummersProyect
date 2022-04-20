@@ -85,10 +85,40 @@ def user_info(request):
     return render(request, 'user_info.html')
 
 # def loginA(request):
-    
 
+@csrf_exempt
+def gamesesion(request):
+    body_unicode = request.body.decode('utf-8')
+    body = loads(body_unicode)
+    id = body['id']
+    startTime = body['startTime']
+    endTime = body['endTime']
+    userId = body['userId']
+    mydb = sqlite3.connect("db.sqlite3")
+    cur = mydb.cursor()
+    stringSQL = '''INSERT INTO "main"."gamesesion" ("id", "startTime", "endTime","userId") VALUES (?, ?,?,?);'''
+    cur.execute(stringSQL, (id,startTime,endTime,userId,))
+    mydb.commit()
 
+    d = {"Perfecto":"Datos subidos"}
+
+    return JsonResponse(d, safe=False)
     
+@csrf_exempt
+def unityCurrentlevel(request):
+    body_unicode = request.body.decode('utf-8')
+    body = loads(body_unicode)
+    currentLevel = body['currentLevel']
+    username = body['username']
+    mydb = sqlite3.connect('db.sqlite3')
+    cur = mydb.cursor()
+    stringSQL = "UPDATE Gameprofile SET currentLevel = ? WHERE username = ?"
+    cur.execute(stringSQL, (currentLevel, username))
+    mydb.commit()
+
+    d = { "informationRecived":1 }
+
+    return JsonResponse(d, safe=False)    
 
 def stats(request):
     mydb = sqlite3.connect("db.sqlite3")
