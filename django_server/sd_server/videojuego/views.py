@@ -87,7 +87,7 @@ def user_info(request):
 # def loginA(request):
 
 @csrf_exempt
-def unityGamesesion(request):
+def unityGamesession(request):
     body_unicode = request.body.decode('utf-8')
     body = loads(body_unicode)
     id = body['id']

@@ -75,4 +75,4 @@ single_scripts/bin
 single_scripts/obj
 
 # _pychache_
-django_server/sd_server/videojuego/__pycache__/*
+/django_server/sd_server/videojuego/__pycache__/*
