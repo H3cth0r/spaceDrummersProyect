@@ -198,16 +198,20 @@ def stats(request):
     stringSQL = 'SELECT age FROM User'
     tablaEda = cur.execute(stringSQL)
     tablaEda = tablaEda.fetchall()
+    stringSQL = 'SELECT max(age) FROM User'
+    unDig = cur.execute(stringSQL)
+    unDig = unDig.fetchone()
+    edadM = unDig[0]
     cantNum = []
     numRep = []
     for i in range(numEda):
-        cantNum.append(tablaEda[i])
+        cantNum.append(tablaEda[i][0])
     cantNum = list(set(cantNum))
 
     for i in range(len(cantNum)):
         num=0
         for j in range(numEda):
-            if cantNum[i]==tablaEda[j]:
+            if cantNum[i]==tablaEda[j][0]:
                 num+=1
         numRep.append(num)
     dataUni=[['Edad','Cantidad']]
@@ -216,9 +220,11 @@ def stats(request):
     
     modificada = dumps(dataUni)
 
-    
-    return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json,'Edad':modificada, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
+    print(edadM)
+
+    return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json,'Edad':modificada, 'MaxEd':edadM, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
     #,{'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json}
+
    
 
 @csrf_exempt
