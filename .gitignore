@@ -76,3 +76,16 @@ single_scripts/obj
 
 # _pychache_
 /django_server/sd_server/videojuego/__pycache__/*
+*.pyc
+django_server/sd_server/sd_server/__pycache__/__init__.cpython-39.pyc
+django_server/sd_server/sd_server/__pycache__/settings.cpython-39.pyc
+django_server/sd_server/sd_server/__pycache__/urls.cpython-39.pyc
+django_server/sd_server/sd_server/__pycache__/wsgi.cpython-39.pyc
+django_server/sd_server/videojuego/__pycache__/__init__.cpython-39.pyc
+django_server/sd_server/videojuego/__pycache__/admin.cpython-39.pyc
+django_server/sd_server/videojuego/__pycache__/apps.cpython-39.pyc
+django_server/sd_server/videojuego/__pycache__/models.cpython-39.pyc
+django_server/sd_server/videojuego/__pycache__/urls.cpython-39.pyc
+django_server/sd_server/videojuego/__pycache__/views.cpython-39.pyc
+django_server/sd_server/videojuego/migrations/__pycache__/0001_initial.cpython-39.pyc
+django_server/sd_server/videojuego/migrations/__pycache__/__init__.cpython-39.pyc

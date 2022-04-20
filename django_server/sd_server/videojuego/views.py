@@ -99,7 +99,7 @@ def unityGamesession(request):
     cur.execute(stringSQL, (startTime,endTime,userId,))
     mydb.commit()
 
-    d = {"Perfecto":"Datos subidos"}
+    d = {"informationRecived":1}
 
     return JsonResponse(d, safe=False)
     
