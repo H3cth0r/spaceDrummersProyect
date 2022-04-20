@@ -91,6 +91,7 @@
               title: 'Edad de los jugadores',
               hAxis: {title: 'Edad', minValue: 10, maxValue: 40},
               vAxis: {title: 'Personas', minValue: 0, maxValue: 10},
+              backgroundColor :'transparent'
               
             };
 
@@ -106,7 +107,7 @@
        
        <!-- Our best global players -->
        <div class="best_global_players_div">
-           <p class="center">Our best global players.</p>
+           <p >Our best global players.</p>
            <br>
            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
            <script type="text/javascript">
@@ -135,12 +136,12 @@
                chart.draw(view, options);
            }
            </script>
-         <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+         <div id="columnchart_values" style="width: 900px; height: 750px;"></div>
        </div>
        
        <!-- Best scores by level -->
-       <div class="best_scores_by_level_div ">
-            <p>Best scores by level.</p>
+       <div class="best_global_players_div">
+            <p >Best scores by level.</p>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
               google.charts.load('current', {'packages':['table']});
@@ -152,14 +153,20 @@
                 data.addColumn('string', 'User');
                 data.addColumn('number', 'score');
                 data.addRows({{valuesB|safe}});
+
+                var options = {
+                 width: 850,
+                 height: 500,
+                 showRowNumber: true
+               };
         
                 var table = new google.visualization.Table(document.getElementById('table_div'));
         
-                table.draw(data, {showRowNumber: true, width: 700, height: '100%'});
+                table.draw(data, options);
               }
             </script>
 
-            <div id="table_div"></div>
+            <div id="table_div" style="height: 600px;"></div>
        </div>
 
 

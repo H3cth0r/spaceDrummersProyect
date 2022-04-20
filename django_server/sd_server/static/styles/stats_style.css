@@ -239,20 +239,17 @@ p{
 /* Best Scores by leve div */
 .best_scores_by_level_div{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    justify-content: flex-end;
     width: 100vw;
     height: 100vh;
 }
 .best_scores_by_level_div img{
-    /* height: 15rem;
-    width: 55rem; */
-    height: auto;
-    width:60vw;
+    height: 30vw;
+    width: auto;
 }
 .best_scores_by_level_div p{
-    align-self: flex-start;
-    margin-bottom: 5rem;
-    margin-left: 5rem;
+    align-self: center;
 }

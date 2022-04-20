@@ -84,7 +84,7 @@ def login(request):
 def user_info(request):
     return render(request, 'user_info.html')
 
-def loginA(request):
+# def loginA(request):
     
 
 
