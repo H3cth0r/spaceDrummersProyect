@@ -87,7 +87,7 @@ def user_info(request):
 # def loginA(request):
 
 @csrf_exempt
-def gamesesion(request):
+def unityGamesesion(request):
     body_unicode = request.body.decode('utf-8')
     body = loads(body_unicode)
     id = body['id']
@@ -289,11 +289,3 @@ def priv(request):
             lista_salida.append(d)
         j = dumps(lista_salida)
     return HttpResponse(j, content_type="text/json-comment-filtered")'''
-
-
-
-
-
-
-
-
