@@ -90,14 +90,13 @@ def user_info(request):
 def unityGamesession(request):
     body_unicode = request.body.decode('utf-8')
     body = loads(body_unicode)
-    id = body['id']
     startTime = body['startTime']
     endTime = body['endTime']
     userId = body['userId']
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
-    stringSQL = '''INSERT INTO "main"."gamesesion" ("id", "startTime", "endTime","userId") VALUES (?, ?,?,?);'''
-    cur.execute(stringSQL, (id,startTime,endTime,userId,))
+    stringSQL = '''INSERT INTO "main"."gamesesion" ( "startTime", "endTime","userId") VALUES (?,?,?);'''
+    cur.execute(stringSQL, (startTime,endTime,userId,))
     mydb.commit()
 
     d = {"Perfecto":"Datos subidos"}
