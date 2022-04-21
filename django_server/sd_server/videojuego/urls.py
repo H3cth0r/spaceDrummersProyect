@@ -14,6 +14,7 @@ urlpatterns = [
     path('priv', views.priv, name='priv'),
     # path('loginA', views.loginA, name='loginA')
     path('unityGamesession', views.unityGamesession, name='unityGamesession'),
+    path('unityCurrentlevel', views.unityCurrentlevel, name='unityCurrentlevel')
 ]
 
 urlpatterns += [

@@ -89,3 +89,4 @@ django_server/sd_server/videojuego/__pycache__/urls.cpython-39.pyc
 django_server/sd_server/videojuego/__pycache__/views.cpython-39.pyc
 django_server/sd_server/videojuego/migrations/__pycache__/0001_initial.cpython-39.pyc
 django_server/sd_server/videojuego/migrations/__pycache__/__init__.cpython-39.pyc
+*.pyc
