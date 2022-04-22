@@ -82,7 +82,6 @@ def login(request):
     return render(request, 'registration/login.html')
 
 
-
 def websiteRegister(request):
     if request.method == "POST":
         body_unicode        = request.body.decode('utf-8')
@@ -126,7 +125,31 @@ def websiteRegister(request):
 
 @login_required
 def user_info(request):
-    return render(request, 'user_info.html')
+
+    mydb = sqlite3.connect("db.sqlite3")
+    cur = mydb.cursor()
+    stringSQL = '''SELECT currentLevel FROM Gameprofile WHERE username = "NonWiz"'''
+    table = cur.execute(stringSQL)
+    table = table.fetchall()
+
+    data = []
+    i = 1
+
+    while i <= table[0][0]:
+        r = str(i)
+        stringSQL = 'SELECT Levelstats.timeWhenScore, Levelstats.score  FROM Levelstats WHERE username = "NonWiz" AND levelId = ? ORDER by score DESC'
+        table1 = cur.execute(stringSQL, (i,))
+        table1 = table1.fetchall()
+        print(table1)
+        i = i+1
+        
+        if table1 == []:
+            pass
+        else:
+            data.append([('Level '+ r), table1[0][0], table1[0][1]])            
+
+    modified_data = dumps(data)
+    return render(request, 'user_info.html', {'values':modified_data})
 
 # def loginA(request):
 
