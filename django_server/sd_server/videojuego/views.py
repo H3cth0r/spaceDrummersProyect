@@ -123,12 +123,12 @@ def websiteRegister(request):
             return JsonResponse(confirmation, safe=False)
 
 
-@login_required
+#@login_required
 def user_info(request):
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
-    stringSQL = '''SELECT currentLevel FROM Gameprofile WHERE username = "NonWiz"'''
+    stringSQL = 'SELECT currentLevel FROM Gameprofile WHERE username = "NonWiz"'
     table = cur.execute(stringSQL)
     table = table.fetchall()
 
@@ -149,10 +149,10 @@ def user_info(request):
             data.append([('Level '+ r), table1[0][0], table1[0][1]])            
 
     modified_data = dumps(data)
+
     return render(request, 'user_info.html', {'values':modified_data})
 
-# def loginA(request):
-
+    
 @csrf_exempt
 def unityGamesession(request):
     body_unicode = request.body.decode('utf-8')
