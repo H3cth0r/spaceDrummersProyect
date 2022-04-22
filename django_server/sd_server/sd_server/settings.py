@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions', #Manejo de session HTPP
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'videojuego',
+    # 'videojuego',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +133,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-AUTH_USER_MODEL = 'videojuego.MyUser'
+# AUTH_USER_MODEL = 'videojuego.MyUser'
