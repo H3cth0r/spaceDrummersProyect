@@ -82,11 +82,11 @@ def login(request):
     return render(request, 'registration/login.html')
 
 
+@csrf_exempt
 def websiteRegister(request):
     if request.method == "POST":
         body_unicode        = request.body.decode('utf-8')
         body                = loads(body_unicode)
-        print(body_unicode)
         name                =   body['user_name']
         lastname            =   body['user_lastname'] 
         mail                =   body['user_mail']
@@ -97,7 +97,7 @@ def websiteRegister(request):
         gender              =   body['user_gender']
         mydb                =   sqlite3.connect("db.sqlite3")
         cur                 =   mydb.cursor()
-        stringSQL           =   "SELECT id, email FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?)"
+        stringSQL           =   '''SELECT id, email FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
         row                 =   cur.execute(stringSQL, (username,))
         row                 =   row.fetchone()
 
@@ -106,21 +106,25 @@ def websiteRegister(request):
         # create registration confirmation obj
         if row == None:
             # First insert user into user table
-            stringSQL       =   "INSERT INTO user (name, lastName, age, email, hashedPwd, country, gender, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            stringSQL       =   '''INSERT INTO "main"."user" ("name", "lastName", "age", "email", "hashedPwd", "country", "gender", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?);'''
             age = 34
-            cur.execute(stringSQL, (name, lastname, age, mail, password, country, gender, False))
+            cur2 =  mydb.cursor()
+            cur2.execute(stringSQL, (name, lastname, age, mail, password, country, gender, "False",))
 
             # Second insert username into gameprofile
-            stringSQL       =   "INSERT INTO gameprofile (username, userId, currentLevel) VALUES (?, last_insert_rowid(), ?)"
-            cur.execute(stringSQL, (username, 0))
+            stringSQL       =   '''INSERT INTO "main"."gameprofile" ("username", "userId", "currentLevel") VALUES (?, last_insert_rowid(), ?);'''
+            cur3 = mydb.cursor()
+            cur3.execute(stringSQL, (username, 0,))
+
+            mydb.commit()
 
             # Create confirmation object
-            confirmation = {"registered" : 1}
+            confirmation = {"registered" : "1"}
             return JsonResponse(confirmation, safe = False)
-        else:
+    
             # if user does exist,create invalid registration object
-            confirmation    =   {"registered" : 0}
-            return JsonResponse(confirmation, safe=False)
+        confirmation    =   {"registered" : "0"}
+        return JsonResponse(confirmation, safe=False)
 
 
 #@login_required
