@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+*sqlite3
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -92,3 +93,4 @@ django_server/sd_server/videojuego/migrations/__pycache__/__init__.cpython-39.py
 *.pyc
 django_server/sd_server/videojuego/__pycache__/views.cpython-39.pyc
 django_server/sd_server/videojuego/__pycache__/views.cpython-39.pyc
+django_server/sd_server/db.sqlite3

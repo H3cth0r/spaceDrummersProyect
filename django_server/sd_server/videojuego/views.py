@@ -1,6 +1,8 @@
+import json
+from tkinter.tix import Tree
 from unicodedata import name
 from urllib import response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt #para la directiva
 import collections
@@ -9,6 +11,10 @@ from json import loads, dumps #para trabajar con json
 import sqlite3
 #import django.http import hhtp404
 from django.contrib.auth.decorators import login_required
+
+
+# importing pyjwt lib for generating jwt tokens
+import jwt
 
 def index(request):
     return render(request, 'main.html')
@@ -79,14 +85,52 @@ def unityLevelstats(request):
 
 
 def login(request):
+    is_logged = logged(request)
+    if is_logged == True:
+        response = redirect('/user_info')
+        return response
     return render(request, 'registration/login.html')
 
 
 @csrf_exempt
+def loginRegister(request):
+    if request.method == "POST":
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        username            =   body['username']
+        password            =   body['password']
+
+        # QUERY
+        mydb                =   sqlite3.connect("db.sqlite3")
+        cur                 =   mydb.cursor()
+        stringSQL           =   '''SELECT hashedPwd FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        row                 =   cur.execute(stringSQL, (username,))
+        row                 =   row.fetchone()
+
+        # if found password, return cookie
+        if row != None:
+            if row[0]   ==  password:
+                confirmation    =   {"correct_credentials" : "Correct credentials"}
+                response        =   JsonResponse(confirmation)
+                login_session   =   {"username" : username, "password":password, "logged":"True"}
+                jwt_key         =   "spaceDrummersIsCool"
+                encoded_jwt     =   jwt.encode(login_session, jwt_key, algorithm="HS256")
+                response.set_cookie("login_session", encoded_jwt)
+            else:
+                confirmation    =   {"correct_credentials" : "Incorrect credentials"}
+                response        =   JsonResponse(confirmation)
+            return response
+
+        # else return incorrect credentials response
+        else:
+            confirmation    =   {"correct_credentials" : "Incorrect credentials"}
+            return JsonResponse(confirmation)
+
+@csrf_exempt
 def websiteRegister(request):
     if request.method == "POST":
-        body_unicode        = request.body.decode('utf-8')
-        body                = loads(body_unicode)
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
         name                =   body['user_name']
         lastname            =   body['user_lastname'] 
         mail                =   body['user_mail']
@@ -119,16 +163,44 @@ def websiteRegister(request):
             mydb.commit()
 
             # Create confirmation object
-            confirmation = {"registered" : "1"}
+            confirmation = {"registered" : "Registered"}
             return JsonResponse(confirmation, safe = False)
     
             # if user does exist,create invalid registration object
-        confirmation    =   {"registered" : "0"}
+        confirmation    =   {"registered" : "Unable to register"}
         return JsonResponse(confirmation, safe=False)
 
+"""
+Method for checking wether the user has JTW token with the correct data
+meaning if the user is logged.
+"""
+def logged(req):
+    if 'login_session' not in req.COOKIES.keys():
+        return False
+    if req.COOKIES['login_session'] is not None:
+        encoded_jwt = req.COOKIES['login_session']
+        jwt_key         =   "spaceDrummersIsCool"
+        decoded_jwt = jwt.decode(encoded_jwt, jwt_key, algorithms=["HS256"])
+        mydb                =   sqlite3.connect("db.sqlite3")
+        cur                 =   mydb.cursor()
+        stringSQL           =   '''SELECT hashedPwd FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        row                 =   cur.execute(stringSQL, (decoded_jwt['username'],))
+        row                 =   row.fetchone()
+        
+        if row != None:
+            if row[0] == decoded_jwt['password'] and decoded_jwt['logged'] == 'True':
+                print(">>>> logging aprobed")
+                return True
 
-#@login_required
+
 def user_info(request):
+    """
+    Checking if is user is logged
+    """
+    is_logged = logged(request)
+    if is_logged == False:
+        response = redirect('/login')
+        return response
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
@@ -144,7 +216,6 @@ def user_info(request):
         stringSQL = 'SELECT Levelstats.timeWhenScore, Levelstats.score  FROM Levelstats WHERE username = "NonWiz" AND levelId = ? ORDER by score DESC'
         table1 = cur.execute(stringSQL, (i,))
         table1 = table1.fetchall()
-        print(table1)
         i = i+1
         
         if table1 == []:
