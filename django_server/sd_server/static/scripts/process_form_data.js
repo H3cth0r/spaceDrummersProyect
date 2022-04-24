@@ -73,20 +73,35 @@ function process_register_data(){
 
 function process_login_data(){
   var continue_next = true;
-  let user_login_data = {'usernameORpassword': $("#log_in_username").val(),
-                         'password':           $("#log_in_password").val()};
-  console.log(user_login_data);
+
   switch(true){
     case (!$("#log_in_username").val()):
       alert("Input your username");
       continue_next = false;
     break;
-
     case (!$("#log_in_password").val()):
       alert("Input Your Password");
       continue_next = false;
     break;
   }
+  let pass            = $('#log_in_password').val()
+  let pass_md5        = $.md5(pass + 'ABCDE')
+  let user_login_data = {'username'   : $("#log_in_username").val(),
+                         'password'   : pass_md5.toUpperCase()};
+  console.log(user_login_data)
+
+  $.ajax({
+    type        : "POST",
+    url         : "/loginRegister",
+    data        : JSON.stringify(user_login_data),
+    contentType : 'application/json; charset=utf-8',
+    success     : function(data){
+      var json  = JSON.stringify(data);
+      var obj   = JSON.parse(json);
+    }
+  })
+
+  location.replace('/user_info');
 
   /*if(continue_next==true)window.location.href  = "user_info.html";*/
 }
