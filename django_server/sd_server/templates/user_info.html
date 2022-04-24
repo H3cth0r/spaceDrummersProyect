@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Jquery -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/placemarker/jQuery-MD5/jquery.md5.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Importing anims js -->
         <script src="{%static 'scripts/anime-master/anime-master/lib/anime.min.js'%}"></script>
@@ -51,9 +52,9 @@
                 <div class="sign_up_div">
                     <div class="sign_up_div_two">
                         <div class="ddl">
-                            <div><label for="sign_up_name">Name</label><input type="text" id="sign_up_name"></div>
-                            <div><label for="sign_up_mail">Mail</label><input type="text" id="sign_up_mail"></div>
-                            <div><label for="sign_up_password">Password</label><input type="password" id="sign_up_password"></div>
+                            <div><label for="sign_up_name">Name</label><input type="text" id="sign_up_name"/></div>
+                            <div><label for="sign_up_mail">Password</label><input type="password" id="sign_up_mail"/></div>
+                            <div><label for="sign_up_password">Password</label><input type="password" id="sign_up_password"/></div>
                             <div><label for="sign_up_country">Country</label>
                                 <select id="sign_up_country" name="country">
                                     <option value="Afganistan">Afghanistan</option>
@@ -306,11 +307,11 @@
                             </div>
                         </div>
                         <div class="ddr">
-                            <div><label for="sign_up_lastname">Lastname</label><input type="text" id="sign_up_lastname"></div>
-                            <div><label for="sign_up_username">Username</label><input type="text" id="sign_up_username"></div>
-                            <div><label for="sign_up_birthday">Birthday</label><input type="text" id="sign_up_birthday"></div>
+                            <div><label for="sign_up_lastname">Lastname</label><input type="text" id="sign_up_lastname" name="sign_up_lastname"/></div>
+                            <div style="opacity: 0;"><label for="sign_up_username">Username</label><input type="text" id="sign_up_username" name="sign_up_username"/></div>
+                            <div><label for="sign_up_birthday">Birthday</label><input type="date" id="sign_up_birthday" name="sign_up_birthday"/></div>
                             <div><label for="sign_up_gender">Gender</label>
-                                <select name="" id="sign_up_gender">
+                                <select name="gender" id="sign_up_gender">
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
                                     <option value="Other">Other</option>

@@ -1,7 +1,9 @@
 import json
+import string
 from tkinter.tix import Tree
 from unicodedata import name
-from urllib import response
+from unittest import result
+from urllib import request, response
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt #para la directiva
@@ -18,6 +20,37 @@ import jwt
 
 def index(request):
     return render(request, 'main.html')
+
+"""
+Method for checking wether the user has JTW token with the correct data
+meaning if the user is logged.
+"""
+def logged(req):
+    if 'login_session' not in req.COOKIES.keys():
+        return False
+    if req.COOKIES['login_session'] is not None:
+        encoded_jwt = req.COOKIES['login_session']
+        jwt_key         =   "spaceDrummersIsCool"
+        decoded_jwt = jwt.decode(encoded_jwt, jwt_key, algorithms=["HS256"])
+        mydb                =   sqlite3.connect("db.sqlite3")
+        cur                 =   mydb.cursor()
+        stringSQL           =   '''SELECT hashedPwd FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        row                 =   cur.execute(stringSQL, (decoded_jwt['username'],))
+        row                 =   row.fetchone()
+        
+        if row != None:
+            if row[0] == decoded_jwt['password'] and decoded_jwt['logged'] == 'True':
+                print(">>>> logging aprobed")
+                return True
+
+def decode_jwt(req):
+    if 'login_session' not in req.COOKIES.keys():
+        return False
+    if req.COOKIES['login_session'] is not None:
+        encoded_jwt = req.COOKIES['login_session']
+        jwt_key         =   "spaceDrummersIsCool"
+        decoded_jwt = jwt.decode(encoded_jwt, jwt_key, algorithms=["HS256"])
+        return decoded_jwt
 
 
 @csrf_exempt #directiva
@@ -167,30 +200,45 @@ def websiteRegister(request):
             return JsonResponse(confirmation, safe = False)
     
             # if user does exist,create invalid registration object
-        confirmation    =   {"registered" : "Unable to register"}
+        confirmation    =   {"registered" : "Found already registered username"}
         return JsonResponse(confirmation, safe=False)
 
-"""
-Method for checking wether the user has JTW token with the correct data
-meaning if the user is logged.
-"""
-def logged(req):
-    if 'login_session' not in req.COOKIES.keys():
-        return False
-    if req.COOKIES['login_session'] is not None:
-        encoded_jwt = req.COOKIES['login_session']
-        jwt_key         =   "spaceDrummersIsCool"
-        decoded_jwt = jwt.decode(encoded_jwt, jwt_key, algorithms=["HS256"])
+
+
+@csrf_exempt
+def giveMeUserData(request):
+    if request.method == "POST":
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        client_response     =   body['give']
+        jwt_token           =   decode_jwt(request)
+        # QUERY
         mydb                =   sqlite3.connect("db.sqlite3")
         cur                 =   mydb.cursor()
-        stringSQL           =   '''SELECT hashedPwd FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
-        row                 =   cur.execute(stringSQL, (decoded_jwt['username'],))
+        stringSQL           =   '''SELECT name, lastName, age, email, country, gender FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        row                 =   cur.execute(stringSQL, (jwt_token['username'],))
         row                 =   row.fetchone()
-        
-        if row != None:
-            if row[0] == decoded_jwt['password'] and decoded_jwt['logged'] == 'True':
-                print(">>>> logging aprobed")
-                return True
+        print(row)
+        result              =   {"name"     : row[0],
+                                 "lastname" : row[1],
+                                 "username" : jwt_token['username'],
+                                 "age"      : str(row[2]),
+                                 "mail"     : row[3],
+                                 "country"  : row[4],
+                                 "gender"   : row[5]
+                                }
+        return  JsonResponse(result, safe=False)
+    
+    result              =   {"name"     : "none",
+                             "lastName" : "none",
+                             "age"      : "0",
+                             "mail"     : "none",
+                             "Country"  : "none",
+                             "Gender"   : "none"
+                            }
+    return JsonResponse(result, safe=False)
+
+
 
 
 def user_info(request):
@@ -221,11 +269,54 @@ def user_info(request):
         if table1 == []:
             pass
         else:
-            data.append([('Level '+ r), table1[0][0], table1[0][1]])            
+            data.append([('Level '+ r), table1[0][0], table1[0][1]])     
+
+        print(data)       
 
     modified_data = dumps(data)
 
     return render(request, 'user_info.html', {'values':modified_data})
+
+@csrf_exempt
+def updateUserDataNow(request):
+    if request.method == "POST":
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        name                =   body['user_name']
+        lastname            =   body['user_lastname'] 
+        if 'password' in body:
+            password        =   body['user_password']
+        else:
+            password        =   False
+        birthday            =   body['user_birthday']
+        country             =   body['user_country']
+        gender              =   body['user_gender']
+        mydb                =   sqlite3.connect("db.sqlite3")
+        tkn                 =   decode_jwt(request)
+
+        age = 34
+        cur2 =  mydb.cursor()
+        # First insert user into user table
+        if password != False:
+            stringSQL       =   '''UPDATE user 
+                                   SET name = ?, lastName = ?, age = ?, hashedPwd = ?, country = ?, gender = ? 
+                                   FROM gameprofile WHERE gameprofile.userId == user.id 
+                                   AND gameprofile.username == ?;'''
+            cur2.execute(stringSQL, (name, lastname, age, password, country, gender, tkn['username'],))
+        else:
+            stringSQL       =   '''UPDATE user 
+                                   SET name = ?, lastName = ?, age = ?, country = ?, gender = ?
+                                   FROM gameprofile WHERE gameprofile.userId == user.id
+                                   AND gameprofile.username == ?;'''
+            cur2.execute(stringSQL, (name, lastname, age, country, gender, tkn['username'],))
+
+
+        mydb.commit()
+
+        # Create confirmation object
+        confirmation = {"registered" : "Registered"}
+        return JsonResponse(confirmation, safe = False)
+    
 
     
 @csrf_exempt
