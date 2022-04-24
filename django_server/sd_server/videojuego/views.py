@@ -1,5 +1,7 @@
 import json
 import string
+from datetime import date
+import datetime
 from tkinter.tix import Tree
 from unicodedata import name
 from unittest import result
@@ -183,10 +185,11 @@ def websiteRegister(request):
         # create registration confirmation obj
         if row == None:
             # First insert user into user table
-            stringSQL       =   '''INSERT INTO "main"."user" ("name", "lastName", "age", "email", "hashedPwd", "country", "gender", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?);'''
-            age = 34
+            stringSQL       =   '''INSERT INTO "main"."user" ("name", "lastName", "age", "email", "hashedPwd", "country", "gender", "admin", "accountCreation") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'''
             cur2 =  mydb.cursor()
-            cur2.execute(stringSQL, (name, lastname, age, mail, password, country, gender, "False",))
+            today = date.today()
+            accountCreation = today.strftime("%Y-%m-%d")
+            cur2.execute(stringSQL, (name, lastname, birthday, mail, password, country, gender, "False", accountCreation,))
 
             # Second insert username into gameprofile
             stringSQL       =   '''INSERT INTO "main"."gameprofile" ("username", "userId", "currentLevel") VALUES (?, last_insert_rowid(), ?);'''
@@ -215,17 +218,19 @@ def giveMeUserData(request):
         # QUERY
         mydb                =   sqlite3.connect("db.sqlite3")
         cur                 =   mydb.cursor()
-        stringSQL           =   '''SELECT name, lastName, age, email, country, gender FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        stringSQL           =   '''SELECT name, lastName, age, email, country, gender, age, accountCreation FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
         row                 =   cur.execute(stringSQL, (jwt_token['username'],))
         row                 =   row.fetchone()
         print(row)
         result              =   {"name"     : row[0],
                                  "lastname" : row[1],
                                  "username" : jwt_token['username'],
-                                 "age"      : str(row[2]),
+                                 "age"      : row[2],
                                  "mail"     : row[3],
                                  "country"  : row[4],
-                                 "gender"   : row[5]
+                                 "gender"   : row[5],
+                                 "birthday" : row[6],
+                                 "creation" : row[7]
                                 }
         return  JsonResponse(result, safe=False)
     
@@ -233,8 +238,10 @@ def giveMeUserData(request):
                              "lastName" : "none",
                              "age"      : "0",
                              "mail"     : "none",
-                             "Country"  : "none",
-                             "Gender"   : "none"
+                             "country"  : "none",
+                             "gender"   : "none",
+                             "birthday" : "none",
+                             "creation" : "none"
                             }
     return JsonResponse(result, safe=False)
 
@@ -294,7 +301,6 @@ def updateUserDataNow(request):
         mydb                =   sqlite3.connect("db.sqlite3")
         tkn                 =   decode_jwt(request)
 
-        age = 34
         cur2 =  mydb.cursor()
         # First insert user into user table
         if password != False:
@@ -302,13 +308,13 @@ def updateUserDataNow(request):
                                    SET name = ?, lastName = ?, age = ?, hashedPwd = ?, country = ?, gender = ? 
                                    FROM gameprofile WHERE gameprofile.userId == user.id 
                                    AND gameprofile.username == ?;'''
-            cur2.execute(stringSQL, (name, lastname, age, password, country, gender, tkn['username'],))
+            cur2.execute(stringSQL, (name, lastname, birthday, password, country, gender, tkn['username'],))
         else:
             stringSQL       =   '''UPDATE user 
                                    SET name = ?, lastName = ?, age = ?, country = ?, gender = ?
                                    FROM gameprofile WHERE gameprofile.userId == user.id
                                    AND gameprofile.username == ?;'''
-            cur2.execute(stringSQL, (name, lastname, age, country, gender, tkn['username'],))
+            cur2.execute(stringSQL, (name, lastname, birthday, country, gender, tkn['username'],))
 
 
         mydb.commit()
@@ -436,23 +442,23 @@ def stats(request):
     edadM = unDig[0]
     cantNum = []
     numRep = []
-    for i in range(numEda):
-        cantNum.append(tablaEda[i][0])
-    cantNum = list(set(cantNum))
 
-    for i in range(len(cantNum)):
-        num=0
-        for j in range(numEda):
-            if cantNum[i]==tablaEda[j][0]:
-                num+=1
-        numRep.append(num)
-    dataUni=[['Edad','Cantidad']]
-    for i in range(len(cantNum)):
-        dataUni.append([cantNum[i] ,numRep[i]])
+    """
+    Date right now  
+    """
+    now =  datetime.datetime.now()
+    for i in range(numEda):
+        birth = datetime.datetime.strptime(tablaEda[i][0], '%Y-%m-%d')
+        # birth = tablaEda[i][0]
+        cantNum.append(int((now - birth).days / 365.25))
+    # cantNum = list(set(cantNum))
+    no_repited_values_list = list(set(cantNum))
+    dataUni = [['Edad', 'Cantidad']]
+    for i in no_repited_values_list:
+        dataUni.append([i, cantNum.count(i)])
     
     modificada = dumps(dataUni)
 
-    print(edadM)
 
     return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json,'Edad':modificada, 'MaxEd':edadM, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
     #,{'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json}
