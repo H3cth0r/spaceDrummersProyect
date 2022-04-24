@@ -74,20 +74,13 @@ function save_user_info(){
 
 
 async function change_vals(ob){
-  var now = new Date();
-
-  var day = ("0" + now.getDate()).slice(-2);
-  var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-  var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-
           $("#sign_up_name").val(ob.name);
           $('#sign_up_lastname').val(ob.lastname);
           $("#sign_up_country").val(ob.country);
           $("#sign_up_username").val(ob.username);
-          $("#sign_up_birthday").val(today);
+          $("#sign_up_birthday").val(ob.birthday);
           $("#sign_up_gender").val(ob.gender);
-
+          $("#creation_date_date").text(ob.creation);
 }
 
 window.onload =function initial_values_user_info(){
