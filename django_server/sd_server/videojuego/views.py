@@ -266,10 +266,10 @@ def user_info(request):
     """
     Checking if is user is logged
     """
-    is_logged = logged(request)
+    """ is_logged = logged(request)
     if is_logged == False:
         response = redirect('/login')
-        return response
+        return response """
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
@@ -292,11 +292,26 @@ def user_info(request):
         else:
             data.append([('Level '+ r), table1[0][0], table1[0][1]])     
 
-        print(data)       
+           
 
     modified_data = dumps(data)
+    
+    #Minutos jugados
+    stringSQL = 'SELECT Levelstats.timeWhenScore FROM  Levelstats WHERE username="NonWiz"'
+    tableMJ = cur.execute(stringSQL)
+    tableMJ = tableMJ.fetchall()
+    stringSQL = 'SELECT count(Levelstats.timeWhenScore) FROM  Levelstats WHERE username="NonWiz"'
+    tableMJ1 = cur.execute(stringSQL)
+    tableMJ1 = tableMJ1.fetchone()
+    par = tableMJ1[0]
+    tim = 0
 
-    return render(request, 'user_info.html', {'values':modified_data})
+    for i in range(par):
+        tim += float(tableMJ[i][0])
+    
+
+
+    return render(request, 'user_info.html', {'values':modified_data,'valT':tim})
 
 @csrf_exempt
 def updateUserDataNow(request):
