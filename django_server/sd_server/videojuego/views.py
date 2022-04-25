@@ -266,10 +266,10 @@ def user_info(request):
     """
     Checking if is user is logged
     """
-    """ is_logged = logged(request)
+    is_logged = logged(request)
     if is_logged == False:
         response = redirect('/login')
-        return response """
+        return response
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
