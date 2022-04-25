@@ -16,6 +16,7 @@ from json import loads, dumps #para trabajar con json
 import sqlite3
 #import django.http import hhtp404
 from django.contrib.auth.decorators import login_required
+from shutil import copyfile
 
 
 # importing pyjwt lib for generating jwt tokens
@@ -198,6 +199,11 @@ def websiteRegister(request):
             cur3.execute(stringSQL, (username, 0,))
 
             mydb.commit()
+
+            # set image
+            src = "static/profile_photos/the_data/default.png" 
+            dts = "static/profile_photos/" + username + ".png"
+            copyfile(src, dts)
 
             # Create confirmation object
             confirmation = {"registered" : "Registered"}
