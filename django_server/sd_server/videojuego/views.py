@@ -1,5 +1,6 @@
 import json
 import string
+import base64
 from datetime import date
 import datetime
 from tkinter.tix import Tree
@@ -323,6 +324,29 @@ def updateUserDataNow(request):
         confirmation = {"registered" : "Registered"}
         return JsonResponse(confirmation, safe = False)
     
+@csrf_exempt
+def takeThisPhoto(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        #   get username from cookie
+        jwt_tkn             =   decode_jwt(request)
+        username            =   jwt_tkn['username']
+        #   get base64 img
+        img_base64          =   body['img_base']
+        img_data            =   img_base64.split(',')
+        img_data            =   img_data[1]
+        #   decode img_data
+        img_64_decode       =   base64.b64decode(img_data)
+        username_file_name  =   username + '.png'
+        img_path            =   "static/profile_photos/"
+        img_result          =   open(img_path + username_file_name, 'wb')
+        img_result.write(img_64_decode)
+        #   img changed confirmation
+        confirmation        =   {"image_change":"True"}
+        return  JsonResponse(confirmation, safe=False)
+
+
 
     
 @csrf_exempt
