@@ -8,6 +8,7 @@ function change_to_account_div(){
 
 
 function run_counting_up(){
+    
     $('.number_one_s').countTo({from: 0, to: 25});
     $('.number_two_s').countTo({from: 0, to: 3452});
     $('.number_three_s').countTo({from: 0, to: 23});

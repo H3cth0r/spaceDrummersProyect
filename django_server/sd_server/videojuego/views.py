@@ -261,7 +261,7 @@ def giveMeUserData(request):
 
 
 
-
+@csrf_exempt
 def user_info(request):
     """
     Checking if is user is logged
@@ -270,38 +270,32 @@ def user_info(request):
     if is_logged == False:
         response = redirect('/login')
         return response
+    jwt_token           =   decode_jwt(request)
+    jueg = jwt_token['username']
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
-    stringSQL = 'SELECT currentLevel FROM Gameprofile WHERE username = "NonWiz"'
-    table = cur.execute(stringSQL)
+    stringSQL = 'SELECT count(score) FROM Levelstats WHERE username = ? '
+    table = cur.execute(stringSQL, (jueg,))
     table = table.fetchall()
+    i = 0
+    t=0
 
-    data = []
-    i = 1
-
-    while i <= table[0][0]:
-        r = str(i)
-        stringSQL = 'SELECT Levelstats.timeWhenScore, Levelstats.score  FROM Levelstats WHERE username = "NonWiz" AND levelId = ? ORDER by score DESC'
-        table1 = cur.execute(stringSQL, (i,))
+    while i < int(table[0][0]):
+        stringSQL = 'SELECT score FROM Levelstats WHERE username = ? '
+        table1 = cur.execute(stringSQL, (jueg,))
         table1 = table1.fetchall()
-        i = i+1
-        
-        if table1 == []:
-            pass
-        else:
-            data.append([('Level '+ r), table1[0][0], table1[0][1]])     
+        t += int(table1[i][0])
+        i += 1
 
-           
-
-    modified_data = dumps(data)
+    t_data = dumps(t)
     
     #Minutos jugados
-    stringSQL = 'SELECT Levelstats.timeWhenScore FROM  Levelstats WHERE username="NonWiz"'
-    tableMJ = cur.execute(stringSQL)
+    stringSQL = 'SELECT Levelstats.timeWhenScore FROM  Levelstats WHERE username=? '
+    tableMJ = cur.execute(stringSQL, (jueg,))
     tableMJ = tableMJ.fetchall()
-    stringSQL = 'SELECT count(Levelstats.timeWhenScore) FROM  Levelstats WHERE username="NonWiz"'
-    tableMJ1 = cur.execute(stringSQL)
+    stringSQL = 'SELECT count(Levelstats.timeWhenScore) FROM  Levelstats WHERE username=? '
+    tableMJ1 = cur.execute(stringSQL, (jueg,))
     tableMJ1 = tableMJ1.fetchone()
     par = tableMJ1[0]
     tim = 0
@@ -309,9 +303,9 @@ def user_info(request):
     for i in range(par):
         tim += float(tableMJ[i][0])
     
+    
 
-
-    return render(request, 'user_info.html', {'values':modified_data,'valT':tim})
+    return render(request, 'user_info.html', {'values':t_data,'valT':tim})
 
 @csrf_exempt
 def updateUserDataNow(request):
