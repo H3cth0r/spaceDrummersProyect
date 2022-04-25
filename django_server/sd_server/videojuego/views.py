@@ -208,6 +208,12 @@ def websiteRegister(request):
         return JsonResponse(confirmation, safe=False)
 
 
+def image_to_base64(t_username):
+    img_path = "static/profile_photos/"
+    the_file = img_path + t_username + ".png"
+    with open(the_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
+    return encoded_string
 
 @csrf_exempt
 def giveMeUserData(request):
@@ -222,7 +228,6 @@ def giveMeUserData(request):
         stringSQL           =   '''SELECT name, lastName, age, email, country, gender, age, accountCreation FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
         row                 =   cur.execute(stringSQL, (jwt_token['username'],))
         row                 =   row.fetchone()
-        print(row)
         result              =   {"name"     : row[0],
                                  "lastname" : row[1],
                                  "username" : jwt_token['username'],
@@ -231,7 +236,8 @@ def giveMeUserData(request):
                                  "country"  : row[4],
                                  "gender"   : row[5],
                                  "birthday" : row[6],
-                                 "creation" : row[7]
+                                 "creation" : row[7],
+                                 "bs4_img"  : image_to_base64(jwt_token['username'])
                                 }
         return  JsonResponse(result, safe=False)
     
@@ -242,7 +248,8 @@ def giveMeUserData(request):
                              "country"  : "none",
                              "gender"   : "none",
                              "birthday" : "none",
-                             "creation" : "none"
+                             "creation" : "none",
+                             "bs4_img"  : "none"
                             }
     return JsonResponse(result, safe=False)
 
