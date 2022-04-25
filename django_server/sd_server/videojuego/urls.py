@@ -16,6 +16,7 @@ urlpatterns = [
     path('loginRegister',       views.loginRegister,    name='loginRegister'),
     path('giveMeUserData',      views.giveMeUserData,   name='giveMeUserData'),
     path('updateUserDataNow',   views.updateUserDataNow,name='updateUserDataNow'),
+    path('takeThisPhoto',       views.takeThisPhoto,    name='takeThisPhoto'),
     # path('loginA', views.loginA, name='loginA')
     path('unityGamesession',    views.unityGamesession, name='unityGamesession'),
     path('unityCurrentlevel',   views.unityCurrentlevel,name='unityCurrentlevel')
