@@ -46,7 +46,7 @@ function save_user_info(){
                               "user_password" :   pass_md5.toUpperCase(),
                               "user_birthday" :   $('#sign_up_birthday').val(),
                               "user_country"  :   $('#sign_up_country').val(),
-                              "user_gender"   :   $('#sign_up_gender').val()
+                              "user_gender"   :   $('#sign_up_gender').val(),
                             };
   } else{
     user_register_data = {"user_name"     :   $('#sign_up_name').val(),
@@ -81,6 +81,8 @@ async function change_vals(ob){
           $("#sign_up_birthday").val(ob.birthday);
           $("#sign_up_gender").val(ob.gender);
           $("#creation_date_date").text(ob.creation);
+          var prev_img = "data:image/png;base64,"
+          $(".left_menu_img").css("background-image", "url(" + prev_img + ob.bs4_img +")");
 }
 
 window.onload =function initial_values_user_info(){
