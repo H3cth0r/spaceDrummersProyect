@@ -48,7 +48,6 @@ def logged(req):
         
         if row != None:
             if row[0] == decoded_jwt['password'] and decoded_jwt['logged'] == 'True':
-                print(">>>> logging aprobed")
                 return True
 
 def decode_jwt(req):
@@ -66,7 +65,6 @@ def unityLogin(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         body = loads(body_unicode)
-        print(body_unicode)
         username = body['username']
         hashedPwdReq = body['hashedPwd']
         mydb = sqlite3.connect("db.sqlite3")
@@ -547,7 +545,6 @@ def get_gaming_info(request):
         stringSQL           =   '''SELECT levelId, username,score, timeWhenScore, kos, failedShoots FROM Levelstats WHERE username = ?;'''
         cur                 =   mydb.cursor()
         table               =   cur.execute(stringSQL, (username,),).fetchall()
-        print(table)
         mydb.commit()
         user_info = {}
         counter = 0
@@ -758,27 +755,6 @@ def topScore(request):
 @login_required   
 def priv(request):
     usuario = request.user
-    print(usuario)
 
     return HttpResponse('Hola')
 
-    '''
-    mydb = sqlite3.connect('db.sqlite3')
-    cur = mydb.cursor()
-    stringSQL = 'SELECT username, userId, currentLevel FROM Gameprofile WHERE django_user=?'
-    rows = cur.execute(stringSQL,(str(usuario),))
-    rr = rows.fetchone()
-    rows = cur.execute(stringSQL,(str(usuario),))
-    if rr == None:
-        raise Http404('user_id does not exist')
-    else:
-        lista_salida = []
-        for r in rows:
-            print(r)
-            d = {}
-            d['id'] = r[0]
-            d['username'] = r[1]
-            d["score"] = r[3]
-            lista_salida.append(d)
-        j = dumps(lista_salida)
-    return HttpResponse(j, content_type="text/json-comment-filtered")'''
