@@ -277,6 +277,28 @@ def user_info(request):
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
+
+    #Scores per game
+    stringSQL = 'SELECT currentLevel FROM Gameprofile WHERE username = ?'
+    table = cur.execute(stringSQL, (jueg,))
+    table = table.fetchall()
+    data = []
+    i = 1
+
+    while i <= table[0][0]:
+        r = str(i)
+        stringSQL = 'SELECT Levelstats.timeWhenScore, Levelstats.score  FROM Levelstats WHERE username = ? AND levelId = ? ORDER by score DESC'
+        table1 = cur.execute(stringSQL, (jueg, i,))
+        table1 = table1.fetchall()
+        i = i+1
+
+        if table1 == []:
+            pass
+        else:
+            data.append([('Level '+ r), table1[0][0], table1[0][1]])
+    data_Json = dumps(data)
+
+    #Score acumulado 
     stringSQL = 'SELECT count(score) FROM Levelstats WHERE username = ? '
     table = cur.execute(stringSQL, (jueg,))
     table = table.fetchall()
@@ -307,7 +329,7 @@ def user_info(request):
     
     
 
-    return render(request, 'user_info.html', {'values':t_data,'valT':tim})
+    return render(request, 'user_info.html', {'values':t_data,'valT':tim, 'valueSc':data_Json})
 
 @csrf_exempt
 def updateUserDataNow(request):
