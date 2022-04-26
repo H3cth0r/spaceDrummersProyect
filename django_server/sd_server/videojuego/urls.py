@@ -23,6 +23,7 @@ urlpatterns = [
     path('delete_user',         views.delete_user,          name='delete_user'),
     path('to_admin_panel',      views.to_admin_panel,       name='to_admin_panel'),
     path('get_gaming_info',     views.get_gaming_info,      name='get_gaming_info'),
+    path('download_game',       views.download_game,        name='download_game'),
     # path('loginA', views.loginA, name='loginA')
     path('unityGamesession',    views.unityGamesession, name='unityGamesession'),
     path('unityCurrentlevel',   views.unityCurrentlevel,name='unityCurrentlevel')

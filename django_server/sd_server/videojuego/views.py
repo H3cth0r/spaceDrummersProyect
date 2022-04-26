@@ -1,8 +1,11 @@
+from fileinput import filename
 import json
 import statistics
 import string
 import base64
 from datetime import date, datetime,timedelta
+
+import mimetypes
 
 
 from unicodedata import name
@@ -558,6 +561,16 @@ def get_gaming_info(request):
             }
             counter += 1
         return JsonResponse(user_info, safe=False)
+
+
+def download_game(request):
+    filename        =   'space_ship.png'
+    filepath        =   'static/videogame_file/'+filename
+    path            =   open(filepath, 'rb')
+    mime_type, _    =   mimetypes.guess_type(filepath)
+    response = HttpResponse(path, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
 
 
     
