@@ -231,7 +231,7 @@ def giveMeUserData(request):
         # QUERY
         mydb                =   sqlite3.connect("db.sqlite3")
         cur                 =   mydb.cursor()
-        stringSQL           =   '''SELECT name, lastName, age, email, country, gender, age, accountCreation FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        stringSQL           =   '''SELECT name, lastName, age, email, country, gender, age, accountCreation, admin FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
         row                 =   cur.execute(stringSQL, (jwt_token['username'],))
         row                 =   row.fetchone()
         result              =   {"name"     : row[0],
@@ -243,7 +243,8 @@ def giveMeUserData(request):
                                  "gender"   : row[5],
                                  "birthday" : row[6],
                                  "creation" : row[7],
-                                 "bs4_img"  : image_to_base64(jwt_token['username'])
+                                 "bs4_img"  : image_to_base64(jwt_token['username']),
+                                 "admin"    : row[8]
                                 }
         return  JsonResponse(result, safe=False)
     
@@ -255,7 +256,8 @@ def giveMeUserData(request):
                              "gender"   : "none",
                              "birthday" : "none",
                              "creation" : "none",
-                             "bs4_img"  : "none"
+                             "bs4_img"  : "none",
+                             "admin"    : "none"
                             }
     return JsonResponse(result, safe=False)
 
@@ -378,6 +380,7 @@ def is_admin(req):
     table                   =   cur.execute(stringSQL, (username,),).fetchone()
     return  table[0]
     
+  
 
 def admin_panel(request):
     # add is logged
@@ -392,6 +395,11 @@ def admin_panel(request):
         return response
 
     return render(request, "crud.html")
+
+@csrf_exempt
+def to_admin_panel(request):
+    if request.method == 'POST':
+       return redirect('/admin_panel')
 
 @csrf_exempt
 def users_data(request):

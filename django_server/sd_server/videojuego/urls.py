@@ -21,6 +21,7 @@ urlpatterns = [
     path('users_data',          views.users_data,           name='users_data'),
     path('safe_admin_changes',  views.save_admin_changes,   name='safe_admin_changes'),
     path('delete_user',         views.delete_user,          name='delete_user'),
+    path('to_admin_panel',      views.to_admin_panel,       name='to_admin_panel'),
     # path('loginA', views.loginA, name='loginA')
     path('unityGamesession',    views.unityGamesession, name='unityGamesession'),
     path('unityCurrentlevel',   views.unityCurrentlevel,name='unityCurrentlevel')
