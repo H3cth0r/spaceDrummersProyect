@@ -1,8 +1,9 @@
 import json
+import statistics
 import string
 import base64
-from datetime import date
-import datetime
+from datetime import date, datetime,timedelta
+
 
 from unicodedata import name
 from unittest import result
@@ -326,10 +327,42 @@ def user_info(request):
 
     for i in range(par):
         tim += float(tableMJ[i][0])
+
+    #Tiempo promedio por sesion
+
+    stringSQL = 'SELECT Gameprofile.userId FROM  Gameprofile WHERE username=? '
+    tableTP = cur.execute(stringSQL, (jueg,))
+    tableTP = tableTP.fetchone()
+    idUsr = tableTP[0]
+    stringSQL = 'SELECT count(Gamesesion.startTime) FROM  Gamesesion WHERE userId=? '
+    tableTP = cur.execute(stringSQL, (idUsr,))
+    tableTP = tableTP.fetchone()
+    canFech= tableTP[0]
+    stringSQL = 'SELECT Gamesesion.startTime, Gamesesion.endTime FROM  Gamesesion WHERE userId=? '
+    tableTP = cur.execute(stringSQL, (idUsr,))
+    tableTP = tableTP.fetchall()
+    per= []
+    perMin=[]
+    for i in range(canFech):
+        time_01 = datetime.strptime(tableTP[i][0][11:19],"%H:%M:%S")
+        time_02 = datetime.strptime(tableTP[i][1][11:19],"%H:%M:%S")
+        time_interval = time_02 - time_01
+        per.append(str(time_interval))
     
+    for i in range(canFech):
+        m=int(per[i][0])*60 + int(per[i][2:4])
+        perMin.append(m)
+
+    tiemAcum=0
+    for i in range(canFech):
+        tiemAcum+=perMin[i]
+
+    promT=tiemAcum/canFech
+    print(promT)
+
     
 
-    return render(request, 'user_info.html', {'values':t_data,'valT':tim, 'valueSc':data_Json})
+    return render(request, 'user_info.html', {'values':t_data,'valT':tim,'valP':promT, 'valueSc':data_Json})
 
 @csrf_exempt
 def updateUserDataNow(request):
