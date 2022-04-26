@@ -374,6 +374,105 @@ def takeThisPhoto(request):
         confirmation        =   {"image_change":"True"}
         return  JsonResponse(confirmation, safe=False)
 
+def is_admin(req):
+    d_jwt = decode_jwt(req)
+    username                =  d_jwt['username']
+
+    stringSQL               =   '''SELECT admin FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+    mydb                    =   sqlite3.connect("db.sqlite3")
+    cur                     =   mydb.cursor()
+    table                   =   cur.execute(stringSQL, (username,),).fetchone()
+    return  table[0]
+    
+
+def admin_panel(request):
+    # add is logged
+    is_logged = logged(request)
+    if is_logged == False:
+        response = redirect('/login')
+        return response
+    
+    is_adm = is_admin(request)
+    if is_adm == 'False':
+        response = redirect('/user_info')
+        return response
+
+    return render(request, "crud.html")
+
+@csrf_exempt
+def users_data(request):
+    # add is logged
+
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+
+        # Get data
+        mydb                =   sqlite3.connect("db.sqlite3")
+        cur                 =   mydb.cursor()
+        stringSQL           =   '''SELECT * FROM Gameprofile INNER JOIN user ON user.id=Gameprofile.userId'''
+        table               =   cur.execute(stringSQL,)
+        table               =   table.fetchall()
+        
+        confirmation        =   {"done" : "yes"}
+
+        the_users           =   {}
+        counter             =   0
+        for i in table:
+            the_users[f"user_{counter}"]   =   {"username" :   i[0],
+                                             "id"       :   i[1],
+                                             "name"     :   i[4],
+                                             "lastname" :   i[5],
+                                             "birth"    :   i[6],
+                                             "email"    :   i[7],
+                                             "country"  :   i[9],
+                                             "gender"   :   i[10],
+                                             "admin"    :   i[11],
+                                             "creation" :   i[12]
+
+            }
+            counter += 1
+        return JsonResponse(the_users, safe=False)
+
+
+@csrf_exempt
+def save_admin_changes(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+
+        mydb                =   sqlite3.connect("db.sqlite3")
+        stringSQL           =   '''UPDATE user 
+                                SET name = ?, lastName = ?, age = ?, gender = ?, admin = ?
+                                FROM gameprofile WHERE gameprofile.userId == user.id
+                                AND gameprofile.username == ?;'''
+        cur                 =   mydb.cursor()
+
+        cur.execute(stringSQL, (body['name'], body['lastname'], body['birth'], body['gender'], body['admin'],body['username'],))
+
+        mydb.commit()
+        confirmation        =   {"confirmation" : "True"}
+        return JsonResponse(confirmation, safe=False)
+
+        
+@csrf_exempt
+def delete_user(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        
+        mydb                =   sqlite3.connect("db.sqlite3")
+        stringSQL           =   '''DELETE FROM user WHERE email = ?'''
+        cur                 =   mydb.cursor()
+
+        cur.execute(stringSQL, (body['username'],),)
+
+        mydb.commit()
+
+        confirmation        =   {"confirmation" : "True"}
+        return  JsonResponse(confirmation, safe=False)
+
+
 
 
     

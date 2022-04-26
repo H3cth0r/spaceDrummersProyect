@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %} 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="{%static 'scripts/anime-master/anime-master/lib/anime.min.js'%}"></script>
+        <!-- crud style -->
+        <link rel="stylesheet" href="{%static 'styles/style_crud.css'%}">
+        
+        <!-- import crud functionality -->
+        <title>CRUD</title>
+    
+    </head>
+    <body>
+        <!-- Navbar -->
+        <div class="navbar" id="navbar_id">
+            <p>SpaceDrummers</p>
+        </div>
+
+        <!-- Main div -->
+        <div class="main_div" id="main_div_id">
+
+
+            <!-- div to present users -->
+            <!-- username, mail, name, country, birth, gender, creation(not_edit) -->
+            <!-- name, lastname, gender, brith -->
+            <div class="div_list_users" id="div_list_users_id">
+
+                <!-- Label -->
+                <div class="single_row_label" id="single_row_label_id">
+                    <div><p>Username</p></div>
+                    <div><p>Mail</p></div>
+                    <div><p>Name</p></div>
+                    <div><p>Lastname</p></div>
+                    <div><p>Country</p></div>
+                    <div><p>Birth</p></div>
+                    <div><p>Gender</p></div>
+                    <div><p>Admin</p></div>
+                    <div><p>Creation</p></div>
+                    <div><p>Save</p></div>
+                    <div><p>Edit</p></div>
+                </div>
+                
+                
+
+            </div>
+
+        <script src="scripts/crud_funct.js"></script>
+        </div>
+    </body>
+</html>
