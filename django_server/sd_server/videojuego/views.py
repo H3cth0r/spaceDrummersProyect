@@ -692,9 +692,9 @@ def stats(request):
     """
     Date right now  
     """
-    now =  datetime.datetime.now()
+    now =  datetime.now()
     for i in range(numEda):
-        birth = datetime.datetime.strptime(tablaEda[i][0], '%Y-%m-%d')
+        birth = datetime.strptime(tablaEda[i][0], '%Y-%m-%d')
         # birth = tablaEda[i][0]
         cantNum.append(int((now - birth).days / 365.25))
     # cantNum = list(set(cantNum))
