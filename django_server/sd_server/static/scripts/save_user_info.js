@@ -83,7 +83,27 @@ async function change_vals(ob){
           $("#creation_date_date").text(ob.creation);
           var prev_img = "data:image/png;base64,"
           $(".left_menu_img").css("background-image", "url(" + prev_img + ob.bs4_img +")");
+
+          console.log(ob.admin);
+          if(ob.admin == 'True'){
+            $("#admin_button").text("Admin");
+          } else{
+            $("#admin_button").text(" ");
+          }
 }
+
+
+
+function if_is_admin(){
+  let petition = {"gimeme" : "Please"};
+  $.ajax({
+    type            : "POST",
+    url             : "/to_admin_panel",
+    data            : JSON.stringify(petition),
+    contentType     : 'application/json; charset=utf-8'
+  }); 
+}
+
 
 window.onload =function initial_values_user_info(){
   // request data via post
