@@ -356,9 +356,12 @@ def user_info(request):
     tiemAcum=0
     for i in range(canFech):
         tiemAcum+=perMin[i]
+    
 
-    promT=tiemAcum/canFech
-    print(promT)
+    if canFech != 0:
+        promT=tiemAcum/canFech
+    else:
+        promT=0
 
     
 
