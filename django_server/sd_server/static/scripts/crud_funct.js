@@ -1,6 +1,6 @@
 function new_div(obj){
             let the = `<div class="single_row_user" id="${obj.username}">
-                        <div><p id="row_username">${obj.username}</p></div>
+                        <div><a href="#" style="text-decoration-color: black;" onclick="add_gaming_info('${obj.username}')"><p id="row_username">${obj.username}</p></a></div>
                         <div><p id="row_mail">${obj.email}</p></div>
                         <div><input type="text" id="row_name" value="${obj.name}"></div>
                         <div><input type="text" id="row_lastname" value="${obj.lastname}"></div>
@@ -118,3 +118,53 @@ function save_button(id_val){
         }
     });
 }
+
+
+function add_rows_gaming(obj){
+    var level           = obj["level"];
+    var score           = obj["score"];
+    var time            = obj["timeWhenScore"];
+    var kos             = obj["kos"];
+    var failedShoots    = obj["failedShoots"];
+
+    var data_div = `<div class="user_game_info_row" id="user_game_info_id">
+                        <div><p id="game_row_levelId">${level}</p></div>
+                        <div><p id="game_row_score">${score}</p></div>
+                        <div><p id="game_row_timeWhenScore">${time}</p></div>
+                        <div><p id="game_row_kos">${kos}</p></div>
+                        <div><p id="game_row_failedShoots">${failedShoots}</p></div>
+                    </div>`;
+    $('.user_game_info_square').append(data_div);
+}
+
+function appear_gaming_info_div(){
+    $(".user_game_info_div").css("display", "flex");
+}
+
+function add_gaming_info(username){
+    appear_gaming_info_div();
+
+    var request = {"username" : username};
+    $.ajax({
+        type        : "POST",
+        url         : "/get_gaming_info",
+        data        : JSON.stringify(request),
+        contentType : 'application/json; charset=utf-8',
+        success     : function(data){
+            var count = Object.keys(data).length;
+            for(var i = 0; i < count; i++){
+                add_rows_gaming(data[`val_${i}`]);
+            }
+        }
+    });
+}
+
+
+function close_gaming_info(){
+    // must delete the current divs
+    $(".user_game_info_div").css("display", "none");
+    $(".user_game_info_row").remove();
+}
+
+
+// window.onload = add_gaming_info();

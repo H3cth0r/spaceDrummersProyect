@@ -82,6 +82,43 @@ p{
 }
 
 
+/* user_game_info_div */
+.user_game_info_div{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/static/resources/background_opacity.png");
+}
+
+.user_game_info_square{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    opacity: 1;
+    width: 50vw;
+    height: 50vh;
+    overflow: auto;
+}
+
+.user_game_info_square div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 0.3rem;
+}
+
+.user_game_info_cols{
+    font-weight: bold;
+}
+
+.user_game_info_square div div{
+    width: 1rem;
+    justify-content: center;
+}
+
 /* Main div */
 .main_div{
     width: 100vw;

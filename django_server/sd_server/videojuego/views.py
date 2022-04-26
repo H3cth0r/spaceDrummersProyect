@@ -497,6 +497,31 @@ def delete_user(request):
         return  JsonResponse(confirmation, safe=False)
 
 
+@csrf_exempt
+def get_gaming_info(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        username            =   body['username']
+
+        mydb                =   sqlite3.connect("db.sqlite3")
+        stringSQL           =   '''SELECT levelId, username,score, timeWhenScore, kos, failedShoots FROM Levelstats WHERE username = ?;'''
+        cur                 =   mydb.cursor()
+        table               =   cur.execute(stringSQL, (username,),).fetchall()
+        print(table)
+        mydb.commit()
+        user_info = {}
+        counter = 0
+        for i in table:
+            user_info[f"val_{counter}"] = {"level"          : i[0],
+                                           "username"       : i[1],
+                                           "score"          : i[2],
+                                           "timeWhenScore"  : i[3],
+                                           "kos"            : i[4],
+                                           "failedShoots"   : i[5]
+            }
+            counter += 1
+        return JsonResponse(user_info, safe=False)
 
 
     
