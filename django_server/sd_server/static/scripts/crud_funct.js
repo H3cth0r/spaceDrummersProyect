@@ -132,7 +132,6 @@ function add_rows_gaming(obj){
                         <div><p id="game_row_score">${score}</p></div>
                         <div><p id="game_row_timeWhenScore">${time}</p></div>
                         <div><p id="game_row_kos">${kos}</p></div>
-                        <div><p id="game_row_failedShoots">${failedShoots}</p></div>
                     </div>`;
     $('.user_game_info_square').append(data_div);
 }
