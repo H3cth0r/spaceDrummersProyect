@@ -32,7 +32,7 @@
                 <ul>
                     <li><a class="navbar_link_animation" href="main" onclick="nav_bar_slide_right()">Main</a></li>
                     <li><a class="navbar_link_animation" href="stats">Stats</a></li>
-                    <li><a class="navbar_link_animation" href="log_reg">Play</a></li>
+                    <li><a class="navbar_link_animation" href="login">Play</a></li>
                 </ul>
             </nav>
        </div>
@@ -89,7 +89,7 @@
                   
                 var options = {
                   title: 'Edad de los jugadores',
-                  hAxis: {title: 'Edad', minValue: 0, maxValue: 100},
+                  hAxis: {title: 'Edad', minValue: 0, maxValue: {{MaxEd|safe}}},
                   vAxis: {title: 'Personas', minValue: 0, maxValue: 10},
                   backgroundColor :'transparent',
                   legend: 'none',

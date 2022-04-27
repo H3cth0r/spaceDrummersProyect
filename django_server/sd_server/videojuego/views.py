@@ -1,8 +1,12 @@
+from fileinput import filename
 import json
+import statistics
 import string
 import base64
-from datetime import date
-import datetime
+from datetime import date, datetime,timedelta
+
+import mimetypes
+
 
 from unicodedata import name
 from unittest import result
@@ -44,7 +48,6 @@ def logged(req):
         
         if row != None:
             if row[0] == decoded_jwt['password'] and decoded_jwt['logged'] == 'True':
-                print(">>>> logging aprobed")
                 return True
 
 def decode_jwt(req):
@@ -62,7 +65,6 @@ def unityLogin(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
         body = loads(body_unicode)
-        print(body_unicode)
         username = body['username']
         hashedPwdReq = body['hashedPwd']
         mydb = sqlite3.connect("db.sqlite3")
@@ -231,7 +233,7 @@ def giveMeUserData(request):
         # QUERY
         mydb                =   sqlite3.connect("db.sqlite3")
         cur                 =   mydb.cursor()
-        stringSQL           =   '''SELECT name, lastName, age, email, country, gender, age, accountCreation FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+        stringSQL           =   '''SELECT name, lastName, age, email, country, gender, age, accountCreation, admin FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
         row                 =   cur.execute(stringSQL, (jwt_token['username'],))
         row                 =   row.fetchone()
         result              =   {"name"     : row[0],
@@ -243,7 +245,8 @@ def giveMeUserData(request):
                                  "gender"   : row[5],
                                  "birthday" : row[6],
                                  "creation" : row[7],
-                                 "bs4_img"  : image_to_base64(jwt_token['username'])
+                                 "bs4_img"  : image_to_base64(jwt_token['username']),
+                                 "admin"    : row[8]
                                 }
         return  JsonResponse(result, safe=False)
     
@@ -255,13 +258,14 @@ def giveMeUserData(request):
                              "gender"   : "none",
                              "birthday" : "none",
                              "creation" : "none",
-                             "bs4_img"  : "none"
+                             "bs4_img"  : "none",
+                             "admin"    : "none"
                             }
     return JsonResponse(result, safe=False)
 
 
 
-
+@csrf_exempt
 def user_info(request):
     """
     Checking if is user is logged
@@ -270,48 +274,99 @@ def user_info(request):
     if is_logged == False:
         response = redirect('/login')
         return response
+    jwt_token           =   decode_jwt(request)
+    jueg = jwt_token['username']
 
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
-    stringSQL = 'SELECT currentLevel FROM Gameprofile WHERE username = "NonWiz"'
-    table = cur.execute(stringSQL)
-    table = table.fetchall()
 
+    #Scores per game
+    stringSQL = 'SELECT currentLevel FROM Gameprofile WHERE username = ?'
+    table = cur.execute(stringSQL, (jueg,))
+    table = table.fetchall()
     data = []
     i = 1
 
     while i <= table[0][0]:
         r = str(i)
-        stringSQL = 'SELECT Levelstats.timeWhenScore, Levelstats.score  FROM Levelstats WHERE username = "NonWiz" AND levelId = ? ORDER by score DESC'
-        table1 = cur.execute(stringSQL, (i,))
+        stringSQL = 'SELECT Levelstats.timeWhenScore, Levelstats.score  FROM Levelstats WHERE username = ? AND levelId = ? ORDER by score DESC'
+        table1 = cur.execute(stringSQL, (jueg, i,))
         table1 = table1.fetchall()
         i = i+1
-        
+
         if table1 == []:
             pass
         else:
-            data.append([('Level '+ r), table1[0][0], table1[0][1]])     
+            data.append([('Level '+ r), table1[0][0], table1[0][1]])
+    data_Json = dumps(data)
 
-           
+    #Score acumulado 
+    stringSQL = 'SELECT count(score) FROM Levelstats WHERE username = ? '
+    table = cur.execute(stringSQL, (jueg,))
+    table = table.fetchall()
+    i = 0
+    t=0
 
-    modified_data = dumps(data)
+    while i < int(table[0][0]):
+        stringSQL = 'SELECT score FROM Levelstats WHERE username = ? '
+        table1 = cur.execute(stringSQL, (jueg,))
+        table1 = table1.fetchall()
+        t += int(table1[i][0])
+        i += 1
+
+    t_data = dumps(t)
     
     #Minutos jugados
-    stringSQL = 'SELECT Levelstats.timeWhenScore FROM  Levelstats WHERE username="NonWiz"'
-    tableMJ = cur.execute(stringSQL)
+    stringSQL = 'SELECT Levelstats.timeWhenScore FROM  Levelstats WHERE username=? '
+    tableMJ = cur.execute(stringSQL, (jueg,))
     tableMJ = tableMJ.fetchall()
-    stringSQL = 'SELECT count(Levelstats.timeWhenScore) FROM  Levelstats WHERE username="NonWiz"'
-    tableMJ1 = cur.execute(stringSQL)
+    stringSQL = 'SELECT count(Levelstats.timeWhenScore) FROM  Levelstats WHERE username=? '
+    tableMJ1 = cur.execute(stringSQL, (jueg,))
     tableMJ1 = tableMJ1.fetchone()
     par = tableMJ1[0]
     tim = 0
 
     for i in range(par):
         tim += float(tableMJ[i][0])
+
+    #Tiempo promedio por sesion
+
+    stringSQL = 'SELECT Gameprofile.userId FROM  Gameprofile WHERE username=? '
+    tableTP = cur.execute(stringSQL, (jueg,))
+    tableTP = tableTP.fetchone()
+    idUsr = tableTP[0]
+    stringSQL = 'SELECT count(Gamesesion.startTime) FROM  Gamesesion WHERE userId=? '
+    tableTP = cur.execute(stringSQL, (idUsr,))
+    tableTP = tableTP.fetchone()
+    canFech= tableTP[0]
+    stringSQL = 'SELECT Gamesesion.startTime, Gamesesion.endTime FROM  Gamesesion WHERE userId=? '
+    tableTP = cur.execute(stringSQL, (idUsr,))
+    tableTP = tableTP.fetchall()
+    per= []
+    perMin=[]
+    for i in range(canFech):
+        time_01 = datetime.strptime(tableTP[i][0][11:19],"%H:%M:%S")
+        time_02 = datetime.strptime(tableTP[i][1][11:19],"%H:%M:%S")
+        time_interval = time_02 - time_01
+        per.append(str(time_interval))
+    
+    for i in range(canFech):
+        m=int(per[i][0])*60 + int(per[i][2:4])
+        perMin.append(m)
+
+    tiemAcum=0
+    for i in range(canFech):
+        tiemAcum+=perMin[i]
     
 
+    if canFech != 0:
+        promT=tiemAcum/canFech
+    else:
+        promT=0
 
-    return render(request, 'user_info.html', {'values':modified_data,'valT':tim})
+    
+
+    return render(request, 'user_info.html', {'values':t_data,'valT':tim,'valP':promT, 'valueSc':data_Json})
 
 @csrf_exempt
 def updateUserDataNow(request):
@@ -374,6 +429,145 @@ def takeThisPhoto(request):
         confirmation        =   {"image_change":"True"}
         return  JsonResponse(confirmation, safe=False)
 
+def is_admin(req):
+    d_jwt = decode_jwt(req)
+    username                =  d_jwt['username']
+
+    stringSQL               =   '''SELECT admin FROM user WHERE id in (SELECT userId FROM gameprofile WHERE username=?);'''
+    mydb                    =   sqlite3.connect("db.sqlite3")
+    cur                     =   mydb.cursor()
+    table                   =   cur.execute(stringSQL, (username,),).fetchone()
+    return  table[0]
+    
+  
+
+def admin_panel(request):
+    # add is logged
+    is_logged = logged(request)
+    if is_logged == False:
+        response = redirect('/login')
+        return response
+    
+    is_adm = is_admin(request)
+    if is_adm == 'False':
+        response = redirect('/user_info')
+        return response
+
+    return render(request, "crud.html")
+
+@csrf_exempt
+def to_admin_panel(request):
+    if request.method == 'POST':
+       return redirect('/admin_panel')
+
+@csrf_exempt
+def users_data(request):
+    # add is logged
+
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+
+        # Get data
+        mydb                =   sqlite3.connect("db.sqlite3")
+        cur                 =   mydb.cursor()
+        stringSQL           =   '''SELECT * FROM Gameprofile INNER JOIN user ON user.id=Gameprofile.userId'''
+        table               =   cur.execute(stringSQL,)
+        table               =   table.fetchall()
+        
+        confirmation        =   {"done" : "yes"}
+
+        the_users           =   {}
+        counter             =   0
+        for i in table:
+            the_users[f"user_{counter}"]   =   {"username" :   i[0],
+                                             "id"       :   i[1],
+                                             "name"     :   i[4],
+                                             "lastname" :   i[5],
+                                             "birth"    :   i[6],
+                                             "email"    :   i[7],
+                                             "country"  :   i[9],
+                                             "gender"   :   i[10],
+                                             "admin"    :   i[11],
+                                             "creation" :   i[12]
+
+            }
+            counter += 1
+        return JsonResponse(the_users, safe=False)
+
+
+@csrf_exempt
+def save_admin_changes(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+
+        mydb                =   sqlite3.connect("db.sqlite3")
+        stringSQL           =   '''UPDATE user 
+                                SET name = ?, lastName = ?, age = ?, gender = ?, admin = ?
+                                FROM gameprofile WHERE gameprofile.userId == user.id
+                                AND gameprofile.username == ?;'''
+        cur                 =   mydb.cursor()
+
+        cur.execute(stringSQL, (body['name'], body['lastname'], body['birth'], body['gender'], body['admin'],body['username'],))
+
+        mydb.commit()
+        confirmation        =   {"confirmation" : "True"}
+        return JsonResponse(confirmation, safe=False)
+
+        
+@csrf_exempt
+def delete_user(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        
+        mydb                =   sqlite3.connect("db.sqlite3")
+        stringSQL           =   '''DELETE FROM user WHERE email = ?'''
+        cur                 =   mydb.cursor()
+
+        cur.execute(stringSQL, (body['username'],),)
+
+        mydb.commit()
+
+        confirmation        =   {"confirmation" : "True"}
+        return  JsonResponse(confirmation, safe=False)
+
+
+@csrf_exempt
+def get_gaming_info(request):
+    if request.method == 'POST':
+        body_unicode        =   request.body.decode('utf-8')
+        body                =   loads(body_unicode)
+        username            =   body['username']
+
+        mydb                =   sqlite3.connect("db.sqlite3")
+        stringSQL           =   '''SELECT levelId, username,score, timeWhenScore, kos, failedShoots FROM Levelstats WHERE username = ?;'''
+        cur                 =   mydb.cursor()
+        table               =   cur.execute(stringSQL, (username,),).fetchall()
+        mydb.commit()
+        user_info = {}
+        counter = 0
+        for i in table:
+            user_info[f"val_{counter}"] = {"level"          : i[0],
+                                           "username"       : i[1],
+                                           "score"          : i[2],
+                                           "timeWhenScore"  : i[3],
+                                           "kos"            : i[4],
+                                           "failedShoots"   : i[5]
+            }
+            counter += 1
+        return JsonResponse(user_info, safe=False)
+
+
+def download_game(request):
+    filename        =   'space_ship.png'
+    filepath        =   'static/videogame_file/'+filename
+    path            =   open(filepath, 'rb')
+    mime_type, _    =   mimetypes.guess_type(filepath)
+    response = HttpResponse(path, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
 
 
     
@@ -488,19 +682,14 @@ def stats(request):
     stringSQL = 'SELECT age FROM User'
     tablaEda = cur.execute(stringSQL)
     tablaEda = tablaEda.fetchall()
-    stringSQL = 'SELECT max(age) FROM User'
-    unDig = cur.execute(stringSQL)
-    unDig = unDig.fetchone()
-    edadM = unDig[0]
     cantNum = []
-    numRep = []
 
     """
     Date right now  
     """
-    now =  datetime.datetime.now()
+    now =  datetime.now()
     for i in range(numEda):
-        birth = datetime.datetime.strptime(tablaEda[i][0], '%Y-%m-%d')
+        birth = datetime.strptime(tablaEda[i][0], '%Y-%m-%d')
         # birth = tablaEda[i][0]
         cantNum.append(int((now - birth).days / 365.25))
     # cantNum = list(set(cantNum))
@@ -510,6 +699,8 @@ def stats(request):
         dataUni.append([i, cantNum.count(i)])
     
     modificada = dumps(dataUni)
+    
+    edadM = max(no_repited_values_list)
 
 
     return render  (request,'stats.html',{'values':modified_data,'username': name_var_json,'points':point_var_json, 'Rols': role, 'valuesC':modified_dataC,'Country':country_var_json,'People':people_var_json,'Edad':modificada, 'MaxEd':edadM, 'valuesB':modified_dataB,'level':level_var_json,'username':username_var_json,'score':score_var_json})
@@ -561,27 +752,6 @@ def topScore(request):
 @login_required   
 def priv(request):
     usuario = request.user
-    print(usuario)
 
     return HttpResponse('Hola')
 
-    '''
-    mydb = sqlite3.connect('db.sqlite3')
-    cur = mydb.cursor()
-    stringSQL = 'SELECT username, userId, currentLevel FROM Gameprofile WHERE django_user=?'
-    rows = cur.execute(stringSQL,(str(usuario),))
-    rr = rows.fetchone()
-    rows = cur.execute(stringSQL,(str(usuario),))
-    if rr == None:
-        raise Http404('user_id does not exist')
-    else:
-        lista_salida = []
-        for r in rows:
-            print(r)
-            d = {}
-            d['id'] = r[0]
-            d['username'] = r[1]
-            d["score"] = r[3]
-            lista_salida.append(d)
-        j = dumps(lista_salida)
-    return HttpResponse(j, content_type="text/json-comment-filtered")'''

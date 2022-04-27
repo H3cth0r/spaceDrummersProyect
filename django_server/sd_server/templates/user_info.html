@@ -33,9 +33,10 @@
                 
                 <ul>
                         <li><a href="#" id="account_button" onclick="change_to_account_div();">Account</a></li>
-                        <li><a href="#" id="stats_button" onclick="change_to_stats_div();">Stats</a></li>
-                        <li><a href="#" id="logout_button" onclick="log_me_out();">Log Out</a></li>
-                        <li><a href="">Play</a></li>
+                        <li><a href="#" id="stats_button"   onclick="change_to_stats_div();">Stats</a></li>
+                        <li><a href="#" id="logout_button"  onclick="log_me_out();">Log Out</a></li>
+                        <li><a href="{% url 'download_game' %}" id="download_button">Download</a></li>
+                        <li><a href="{% url 'admin_panel' %}" id="admin_button"></a></li>
                 </ul>
             </div> 
 
@@ -349,7 +350,7 @@
                         data.addColumn('string', 'Level');
                         data.addColumn('number', 'Time');
                         data.addColumn('number', 'Score');
-                        data.addRows({{values|safe}});
+                        data.addRows({{valueSc|safe}});
 
 
                     var table = new google.visualization.Table(document.getElementById('table_div'));
@@ -365,13 +366,11 @@
                 <div class="general_data_div">
                     <!-- left data -->
                     <div>
-                        <p><span class="number_one_s"></span> mins average per session.</p>
-                        <p><span class="number_two_s"></span> acumulated score.</p>
+                        <p><span ></span>{{valP|safe}} mins average per session.</p>
+                        <p><span ></span>{{values|safe}} acumulated score.</p>
                     </div>
                     <!-- right data -->
                     <div>
-                        <p><span class="number_three_s"></span> local position.</p>
-                        <p><span class="number_four_s"></span> global position</p>
                         <p><span ></span>{{valT|safe}} minuted played</p>
                     </div>
                 </div>
