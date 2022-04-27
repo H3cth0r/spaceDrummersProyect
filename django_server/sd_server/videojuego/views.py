@@ -607,6 +607,8 @@ def unityCurrentlevel(request):
 def stats(request):
     mydb = sqlite3.connect("db.sqlite3")
     cur = mydb.cursor()
+
+
     stringSQL = '''SELECT Gameprofile.username, User.country, Levelstats.score FROM (User JOIN Gameprofile ON User.id = Gameprofile.userId) JOIN Levelstats ON Gameprofile.username = Levelstats.username ORDER by score DESC LIMIT 3'''
     table = cur.execute(stringSQL)
     table = table.fetchall()
@@ -614,15 +616,18 @@ def stats(request):
     name_var = 'username'
     point_var = 'Points'
     role = {"role": 'style'}
+    data = [[name_var,point_var, role]]
+
+
     country_var = 'Country'
     people_var = 'People'
+    dataC = [[country_var, people_var]]
+
+
     level_var = 'LEVEL'
     username_var = 'USERNAME'
     score_var = 'SCORE'
 
-    data = [[name_var,point_var, role]]
-    dataC = [[country_var, people_var]]
-    dataB = []
 
     data.append([table[1][0]+" / "+table[1][1], table[1][2], '#1A7A3C'])
     data.append([table[0][0]+" / "+table[0][1], table[0][2], '#274A9F'])
@@ -661,19 +666,25 @@ def stats(request):
 
     i = 0
 
+    dataB = []
+
     while (i <= 8):
-        i = i + 1
+        
         r = str(i)
         stringSQL = 'SELECT Levelstats.levelId, Levelstats.username, Levelstats.score  FROM Levelstats WHERE levelId = '+r+' ORDER by score DESC LIMIT 1'
         table = cur.execute(stringSQL)
         table = table.fetchall()
-        dataB.append([('Level '+ r), table[0][1], table[0][2]])
+        dataB.append([('Level '+ str(i+1)), table[0][1], table[0][2]])
+
+        i = i + 1
+
+    modified_dataB = dumps(dataB)
+
 
     level_var_json = dumps(level_var)
     username_var_json = dumps(level_var)
     score_var_json = dumps(score_var)
-    modified_dataB = dumps(dataB)
-
+    
      # Histograma de las edades de los jugadores
     stringSQL = 'SELECT count(age) FROM User'
     tablaEda = cur.execute(stringSQL)
