@@ -401,8 +401,8 @@ p{
 }
 
 .victor_card{
-    /* background-image: url('../resources/default_team_mate.jpg'); */
-    background-color: #E0E0E0;
+    background-image: url('../resources/thats_victor.jpg');
+    /* background-color: #E0E0E0; */
 }
 .hector_card{
     background-image: url('../resources/thats_me.jpeg');
