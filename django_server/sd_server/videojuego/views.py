@@ -561,7 +561,7 @@ def get_gaming_info(request):
 
 
 def download_game(request):
-    filename        =   'space_ship.png'
+    filename        =   'unityBuild.zip'
     filepath        =   'static/videogame_file/'+filename
     path            =   open(filepath, 'rb')
     mime_type, _    =   mimetypes.guess_type(filepath)
