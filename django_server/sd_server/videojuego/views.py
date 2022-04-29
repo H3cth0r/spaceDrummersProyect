@@ -285,7 +285,7 @@ def user_info(request):
     table = cur.execute(stringSQL, (jueg,))
     table = table.fetchall()
     data = []
-    i = 1
+    i = 0
 
     while i <= table[0][0]:
         r = str(i)
