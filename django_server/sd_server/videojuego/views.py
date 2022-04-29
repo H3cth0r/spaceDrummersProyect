@@ -94,7 +94,13 @@ def unityLogin(request):
                     }
 
         else:
-            raise Http404("username does not exist")
+            d = {
+                    "userId":None,
+                    "username":None,
+                    "accessGranted":None,
+                    "currentLevel":None
+                    }
+            return JsonResponse(d, safe=False)
 
         return JsonResponse(d, safe=False)
     return HttpResponse("Use POST")
