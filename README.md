@@ -1,4 +1,3 @@
-# Space Drummers
 ![SpaceDrummers](https://github.com/H3cth0r/spaceDrummersProyect/blob/main/vectors/portada/portada.png)
 
 ## Collaborators
