@@ -12,6 +12,89 @@
 This project aims to make a videogame, a running server and a webpage for said game. 
 
 ## General Project Structure
+
+```
+spaceDrummersProyect
+    ├───animations
+    ├───dataBase
+    ├───django_server
+    │   └───sd_server
+    │       ├───sd_server
+    │       │   └───__pycache__
+    │       ├───static
+    │       │   ├───profile_photos
+    │       │   │   └───the_data
+    │       │   ├───resources
+    │       │   ├───scripts
+    │       │   │   └───anime-master
+    │       │   │       └───anime-master
+    │       │   │           ├───.github
+    │       │   │           │   └───ISSUE_TEMPLATE
+    │       │   │           ├───documentation
+    │       │   │           │   ├───assets
+    │       │   │           │   │   ├───css
+    │       │   │           │   │   ├───fonts
+    │       │   │           │   │   ├───img
+    │       │   │           │   │   │   └───icons
+    │       │   │           │   │   └───js
+    │       │   │           │   │       ├───anime
+    │       │   │           │   │       └───vendors
+    │       │   │           │   └───examples
+    │       │   │           ├───lib
+    │       │   │           └───src
+    │       │   ├───styles
+    │       │   │   └───helvetica_font
+    │       │   └───videogame_file
+    │       ├───templates
+    │       │   └───registration
+    │       └───videojuego
+    │           ├───migrations
+    │           │   └───__pycache__
+    │           └───__pycache__
+    ├───single_scripts
+    │   └───txt_tabs
+    ├───staticAPIs
+    ├───unity
+    ├───vectors
+    │   ├───alien_1
+    │   ├───alien_2
+    │   ├───alien_3
+    │   ├───alien_4
+    │   ├───alien_5
+    │   ├───background
+    │   ├───config
+    │   ├───drumstick
+    │   ├───in_level_pack_selection
+    │   ├───level_pack_selection
+    │   ├───login_assets
+    │   ├───main_menu
+    │   ├───pause_menu
+    │   ├───portada
+    │   └───space_ship
+    └───website_sd
+        ├───resources
+        ├───scripts
+        │   └───anime-master
+        │       └───anime-master
+        │           ├───.github
+        │           │   └───ISSUE_TEMPLATE
+        │           ├───documentation
+        │           │   ├───assets
+        │           │   │   ├───css
+        │           │   │   ├───fonts
+        │           │   │   ├───img
+        │           │   │   │   └───icons
+        │           │   │   └───js
+        │           │   │       ├───anime
+        │           │   │       └───vendors
+        │           │   └───examples
+        │           ├───lib
+        │           └───src
+        └───styles
+            └───helvetica_font
+```
+
+
 - **website_sd(Space Drummers website)** <br> Here we store every file required to view and run the official SpaceDrummers project website. On the main folder you will find the html files where the resources, scripts and style are being applied.
   - **resources**: Here we store images and icons that are applyed on the site.
   - **scripts**: Here are a series of js scripts necessary for some animatiosn and data processing.
