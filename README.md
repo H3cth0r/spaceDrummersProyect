@@ -9,7 +9,8 @@
 </ul>
 
 ## General Project Information
-This project aims to make a videogame, a running server and a webpage for said game. 
+This is our evidence project for the “implementación de metodos computacionales”  subject, in which we were intended to create a solution for our training partner's proposed problem. Our current training partner is an organización called “Percussion Arts Society”; we chose to implement a project for the interactive percussion committee. We developed a videogame that allows the user to practice and improve their ability to follow a rhythm; our game idea is based on the popular game called “Simon says” in which the attacker must repeat or follow an instructed sequence or order. In our game, the user must repeat a sequence of beats, just as the attacker produced them to tackle them and increment their score. In addition to game development, the subject required us to set up a server and a website, where users will be able to create accounts, create sessions, add administrator functionalities, save users' progress and information, etc; for this, we were required to make use of Django for settings up the server and SQLite as the database. In the end, we were able to create this nice and great solution.
+
 
 ## General Project Structure
 
@@ -103,78 +104,3 @@ spaceDrummersProyect
 - **vectors**: Here are located the design object located on the website and unity game.
 - **staticAPISs**: This are the examples of APIs that will give functionality to the game.
 - **dataBse**: We saved all files relationated with the database architecture.
-
-
-## Classes
-
-### Send and Used on Unity
-
-- **Login**
-  * Attributes
-      - userName:TMP_input_field:
-      - hashPwd:TMP_input_field 
-  * Methods
-      - MD5_hash(stsring):string
-      - Upload(string):IEnumerator
-      - LoginButton(Clicked):void
-
-- **Session**
-  * Attributes
-      - startTime:string
-      - endTime:string
-      - userInfo:User
-  * Methods
-      - gets()
-      - sets()
-- **Attempt(per level gamed)**
-  * Attributes
-      - levelId:Int
-      - Score:Int
-      - Succed:Bool
-      - timeWhenScored:String
-      - KOS:Int
-      - failedShotos:Int
-      - totalShots:Int
-  * Methods
-      - sendDataToServer()
-      - gets()
-      - sets()
-- **User**
-  * Attributes
-      - userId:int
-      - userName:string
-      - userId:int
-      - currentSession:Session
-  * Methods
-      - gets()
-      - sets()
-
-- **Settings**
-   * Attributes
-       - volumeLevel:int
-       - controlConfig:Control
-   * Methods
-       - changeVolume(int):bool
-       - resetControls():bool
-       - changeControlConfig()bool
-- **Control**
-   * Attributes
-       - controlOne:char
-       - controlTwo:char
-       - controlThree:char
-       - controlFour:char
-   * Methods
-       - defaultControls():bool
-       - gets():char
-       - sets(char):bool
-### Send and used on server
-
-- **InitialSession(response from server)**
-  * Attributes
-      - currentLevel:int 
-      - accessGranted:bool
-      - userId:int
-      - userName:string
-  * Methods
-      - Gets()
-      - Sets()
