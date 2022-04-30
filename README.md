@@ -11,6 +11,11 @@
 ## General Project Information
 This is our evidence project for the “implementación de metodos computacionales”  subject, in which we were intended to create a solution for our training partner's proposed problem. Our current training partner is an organización called “Percussion Arts Society”; we chose to implement a project for the interactive percussion committee. We developed a videogame that allows the user to practice and improve their ability to follow a rhythm; our game idea is based on the popular game called “Simon says” in which the attacker must repeat or follow an instructed sequence or order. In our game, the user must repeat a sequence of beats, just as the attacker produced them to tackle them and increment their score. In addition to game development, the subject required us to set up a server and a website, where users will be able to create accounts, create sessions, add administrator functionalities, save users' progress and information, etc; for this, we were required to make use of Django for settings up the server and SQLite as the database. In the end, we were able to create this nice and great solution.
 
+## User Manual
+In case you want to know more about the current project, we invite you to open our 26 pages user manual, where we explain in detail, how you could run the project and game.
+
+[User Manual](https://docs.google.com/document/d/1fcnX2Lc0bJK9SOQRYNRaQ4wTOu5_bycVhFUpc4614lk/edit?usp=sharing)
+
 
 ## General Project Structure
 
@@ -96,11 +101,4 @@ spaceDrummersProyect
 ```
 
 
-- **website_sd(Space Drummers website)** <br> Here we store every file required to view and run the official SpaceDrummers project website. On the main folder you will find the html files where the resources, scripts and style are being applied.
-  - **resources**: Here we store images and icons that are applyed on the site.
-  - **scripts**: Here are a series of js scripts necessary for some animatiosn and data processing.
-  - **styles**: On this foldew we store all the css and font files used for the styling of our website.
-- **django_server**: Here are located all the correspongin django files and exes for running our server.
-- **vectors**: Here are located the design object located on the website and unity game.
-- **staticAPISs**: This are the examples of APIs that will give functionality to the game.
-- **dataBse**: We saved all files relationated with the database architecture.
+## License
