@@ -103,4 +103,4 @@ spaceDrummersProyect
 
 ## License
 attribution-noncommercial-sharealike 4.0 international (cc by-nc-sa 4.0)
-<img src="https://github.com/H3cth0r/spaceDrummersProyect/blob/main/vectors/license/license.jpg" style="width: 1.5rem; height: auto;"/>
+<img src="https://github.com/H3cth0r/spaceDrummersProyect/blob/main/vectors/license/license.jpg" style="width: 0.8rem; height: auto;"/>
