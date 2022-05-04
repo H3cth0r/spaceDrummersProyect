@@ -42,6 +42,7 @@ function process_register_data(){
       continue_next = false;
     break;
   }
+  if(continue_next == false) return;
   let pass = $('#sign_up_password').val();
   let pass_md5 = $.md5(pass + 'ABCDE');
   // let pass_md5 = 'noeslacontra'
