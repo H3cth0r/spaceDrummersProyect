@@ -46,6 +46,7 @@ function process_register_data(){
     console.log("not registered");
     return;
   }
+  console.log("not registered 2");
   let pass = $('#sign_up_password').val();
   let pass_md5 = $.md5(pass + 'ABCDE');
   // let pass_md5 = 'noeslacontra'
